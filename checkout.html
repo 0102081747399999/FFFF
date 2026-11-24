@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إتمام الطلب — متجر ملابس رجالي كاجوال</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#F59E0B',
+            'primary-hover': '#D97706',
+            'primary-container': '#2A1D07',
+            'on-primary': '#0F172A',
+            'secondary': '#06B6D4',
+            'surface': '#0B0F19',
+            'surface-container-low': '#0F172A',
+            'surface-container': '#111827',
+            'surface-container-high': '#1E293B',
+            'on-surface': '#F9FAFB',
+            'on-surface-variant': '#94A3B8',
+            'outline': '#334155',
+            'outline-variant': '#1E293B',
+            'success': '#10B981',
+            'on-success': '#0F172A',
+            'success-container': '#064E3B',
+            'on-success-container': '#6EE7B7',
+            'error': '#EF4444',
+            'on-error': '#FFFFFF',
+            'error-container': '#450A0A',
+            'on-error-container': '#FCA5A5',
+          },
+          borderRadius: {
+            'sm': '8px',
+            'DEFAULT': '12px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Cairo"', 'sans-serif'],
+            'headline': ['"Cairo"', 'sans-serif'],
+            'title': ['"Cairo"', 'sans-serif'],
+            'body': ['"Cairo"', 'sans-serif'],
+            'label': ['"Cairo"', 'sans-serif'],
+            'mono': ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-outline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 focus:outline-none">
+          <span class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center font-display font-black text-xl shadow-md">ش</span>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-lg text-on-surface">ملابس رجالي كاجوال</span>
+            <span class="text-xs text-primary font-semibold -mt-0.5">الدفع عند الاستلام والمعاينة</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs sm:text-sm font-label">
+        <a href="index.html" class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-semibold">
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+          <span>العودة للمتجر</span>
+        </a>
+        <span class="text-outline">|</span>
+        <a href="sales.html" class="text-primary hover:underline flex items-center gap-1 font-semibold">
+          <span class="material-symbols-outlined text-base">dashboard</span>
+          <span>لوحة المبيعات</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Checkout Main -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="mb-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success/15 border border-success/40 text-success font-label text-xs font-bold mb-2">
+        <span class="material-symbols-outlined text-base">local_shipping</span>
+        الدفع نقداً عند استلام ومعاينة المنتج
+      </span>
+      <h1 class="font-headline font-bold text-2xl sm:text-3xl text-on-surface">
+        تأكيد بيانات طلبك وتوصيل الشحنة
+      </h1>
+      <p class="font-body text-sm text-on-surface-variant mt-1">
+        سجل اسمك ورقمك وعنوانك ولوكيشن التوصيل وسيصلك مندوبنا خلال ٢٤ إلى ٤٨ ساعة
+      </p>
+    </div>
+
+    <form id="checkoutForm" novalidate class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Right Column: Form Inputs (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+
+        <!-- 1. Customer Details Section -->
+        <section class="bg-surface-container border border-outline rounded-2xl p-6 flex flex-col gap-5 shadow-lg">
+          <header class="flex items-center gap-2 border-b border-outline pb-3.5">
+            <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">person_pin</span>
+            <h2 class="font-title text-lg font-bold text-on-surface">بيانات العميل ومكان التوصيل</h2>
+          </header>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- 1. Full Name -->
+            <label class="flex flex-col gap-1.5">
+              <span class="font-label text-sm text-on-surface font-bold">
+                الاسم بالكامل <span class="text-primary">*</span>
+              </span>
+              <input 
+                id="fullName" 
+                type="text" 
+                required 
+                placeholder="اكتب اسمك بالكامل..." 
+                class="w-full rounded-xl bg-surface-container-low border border-outline px-4 py-3 font-body text-sm text-on-surface placeholder:text-on-surface-variant/40 transition-colors focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+              >
+              <span id="fullNameError" role="alert" class="hidden font-body text-xs text-error font-medium">يرجى كتابة اسمك (٣ أحرف على الأقل)</span>
+            </label>
+
+            <!-- 2. Phone / WhatsApp -->
+            <label class="flex flex-col gap-1.5">
+              <span class="font-label text-sm text-on-surface font-bold">
+                رقم الهاتف / الواتساب <span class="text-primary">*</span>
+              </span>
+              <div class="relative flex items-center">
+                <span class="absolute right-3.5 text-on-surface-variant pointer-events-none" aria-hidden="true">
+                  <span class="material-symbols-outlined text-lg">call</span>
+                </span>
+                <input 
+                  id="phone" 
+                  type="tel" 
+                  inputmode="numeric" 
+                  dir="ltr" 
+                  required 
+                  placeholder="010 1234 5678" 
+                  class="w-full rounded-xl bg-surface-container-low border border-outline pr-10 pl-4 py-3 font-mono text-sm text-on-surface text-right placeholder:text-on-surface-variant/40 tabular-nums transition-colors focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                >
+              </div>
+              <span id="phoneHint" class="font-body text-xs text-on-surface-variant">رقم مصري متاح للاتصال وتأكيد الشحن</span>
+              <span id="phoneError" role="alert" class="hidden font-body text-xs text-error font-medium">يرجى إدخال رقم هاتف مصري صحيح (١١ رقماً)</span>
+            </label>
+          </div>
+
+          <!-- 3. Detailed Address -->
+          <label class="flex flex-col gap-1.5">
+            <span class="font-label text-sm text-on-surface font-bold">
+              المحافظة والعنوان بالتفصيل <span class="text-primary">*</span>
+            </span>
+            <textarea 
+              id="address" 
+              rows="2" 
+              required 
+              placeholder="اكتب المحافظة والمدينة، اسم الشارع، رقم العمارة والشقة..." 
+              class="w-full rounded-xl bg-surface-container-low border border-outline px-4 py-3 font-body text-sm text-on-surface placeholder:text-on-surface-variant/40 transition-colors focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none leading-relaxed"
+            ></textarea>
+            <span id="addressError" role="alert" class="hidden font-body text-xs text-error font-medium">يرجى كتابة العنوان بالتفصيل لتسليم سريع</span>
+          </label>
+
+          <!-- 4. Location / GPS Location Field (Critical Requirement) -->
+          <div class="flex flex-col gap-2 p-4 rounded-xl bg-surface-container-low border border-secondary/40">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <label for="locationInput" class="font-label text-sm text-on-surface font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-secondary text-lg">near_me</span>
+                <span>اللوكيشن / الموقع الدقيق للتوصيل:</span>
+              </label>
+
+              <!-- Instant GPS Geolocation Button -->
+              <button 
+                id="getGpsLocationBtn" 
+                type="button" 
+                class="gps-pulse inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-secondary/20 border border-secondary text-secondary hover:bg-secondary hover:text-black font-label text-xs font-bold transition-all"
+                title="اضغط هنا لالتقاط موقعك الحالي تلقائياً عبر GPS خرائط جوجل"
+              >
+                <span id="gpsBtnIcon" class="material-symbols-outlined text-base">my_location</span>
+                <span id="gpsBtnText">تحديد موقعي الحالي تلقائياً (GPS)</span>
+              </button>
+            </div>
+
+            <input 
+              id="locationInput" 
+              type="text" 
+              placeholder="اكتب اسم اللوكيشن أو أقرب علامة مميزة (أو اضغط زر GPS أعلاه لتحديده تلقائياً)..." 
+              class="w-full rounded-lg bg-surface-container border border-outline px-4 py-2.5 font-body text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-colors focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none"
+            >
+            <span id="gpsSuccessBadge" class="hidden text-xs text-success font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              تم التقاط موقعك الجغرافي الدقيق بنجاح وسيتم إرفاق رابط الخريطة مع طلبك!
+            </span>
+          </div>
+
+          <!-- 5. Order Notes -->
+          <label class="flex flex-col gap-1.5">
+            <span class="font-label text-sm text-on-surface font-medium">
+              ملاحظات للمندوب أو المقاس (اختياري)
+            </span>
+            <textarea 
+              id="notes" 
+              rows="2" 
+              placeholder="أي تفاصيل خاصة بتوقيت الاستلام أو تعليمات للمندوب..." 
+              class="w-full rounded-xl bg-surface-container-low border border-outline px-4 py-2.5 font-body text-sm text-on-surface placeholder:text-on-surface-variant/40 transition-colors focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+            ></textarea>
+          </label>
+        </section>
+
+        <!-- 2. Payment Method Selector Card -->
+        <section class="bg-surface-container border border-outline rounded-2xl p-6 flex flex-col gap-5 shadow-lg">
+          <header class="flex items-center gap-2 border-b border-outline pb-3.5">
+            <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">payments</span>
+            <h2 class="font-title text-lg font-bold text-on-surface">طريقة الدفع</h2>
+          </header>
+
+          <fieldset class="flex flex-col gap-4">
+            <legend class="sr-only">اختر وسيلة الدفع</legend>
+
+            <!-- Option A: Cash on Delivery (COD) - Default & Highlighted -->
+            <label id="codCard" class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low border-2 border-success cursor-pointer transition-all shadow-md">
+              <input type="radio" name="paymentMethod" value="cod" checked class="text-success bg-surface border-outline focus:ring-success mt-1 w-5 h-5">
+              <div class="flex-1 flex flex-col gap-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-title text-base font-bold text-on-surface flex items-center gap-1.5">
+                    <span>الدفع عند الاستلام (COD)</span>
+                    <span class="px-2 py-0.5 rounded-full bg-success/20 text-success text-xs font-bold">الخيار الموصى به</span>
+                  </span>
+                  <span class="material-symbols-outlined text-2xl text-success" aria-hidden="true">local_atm</span>
+                </div>
+                <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+                  الدفع نقداً عند استلام شحنتك ومعاينة خامة وجودة الملابس بنفسك قبل دفع أي مليم.
+                </p>
+              </div>
+            </label>
+
+            <!-- Option B: Vodafone Cash (Optional pre-payment) -->
+            <div id="vfWrapper" class="rounded-xl bg-surface-container-low border border-outline transition-all overflow-hidden">
+              <label class="flex items-start gap-4 p-4 cursor-pointer">
+                <input type="radio" name="paymentMethod" value="vodafone" class="text-primary bg-surface border-outline focus:ring-primary mt-1 w-5 h-5">
+                <div class="flex-1 flex flex-col gap-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-title text-base font-bold text-on-surface">الدفع عبر فودافون كاش (Vodafone Cash)</span>
+                    <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">phone_android</span>
+                  </div>
+                  <span class="font-body text-xs text-on-surface-variant">
+                    تحويل قيمة الطلب للمحفظة مع إرفاق لقطة شاشة أو تصوير الإيصال
+                  </span>
+                </div>
+              </label>
+
+              <!-- Vodafone Cash Box (expands if chosen) -->
+              <div id="vfVerificationBox" class="hidden px-4 pb-5 pt-2 border-t border-outline flex flex-col gap-4">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-surface-container border border-outline">
+                  <div class="flex flex-col gap-0.5">
+                    <span class="font-label text-xs text-on-surface-variant">رقم محفظة فودافون كاش للمتجر:</span>
+                    <span id="vfWalletNumber" dir="ltr" class="font-mono text-xl text-primary font-bold tracking-wider select-all">0109 842 7510</span>
+                  </div>
+                  <button 
+                    id="copyWalletBtn" 
+                    type="button" 
+                    class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-primary-container border border-primary text-[#FFDEA5] font-label text-xs font-bold hover:bg-primary hover:text-on-primary transition-colors"
+                  >
+                    <span id="copyIcon" class="material-symbols-outlined text-base">content_copy</span>
+                    <span id="copyText">نسخ الرقم</span>
+                  </button>
+                </div>
+
+                <!-- Receipt Dropzone & Camera -->
+                <div class="flex flex-col gap-2">
+                  <span class="font-label text-xs font-bold text-on-surface">إيصال التحويل (إلزامي في حال فودافون كاش):</span>
+                  
+                  <div id="receiptDropzone" class="border-2 border-dashed border-outline hover:border-primary rounded-xl p-5 bg-surface flex flex-col items-center text-center gap-3 transition-colors">
+                    <span class="material-symbols-outlined text-2xl text-primary">receipt_long</span>
+                    <p class="font-body text-xs text-on-surface-variant">افتح الكاميرا لتصوير شاشة التحويل أو اختر لقطة الشاشة من جهازك</p>
+                    
+                    <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
+                      <button id="openCameraBtn" type="button" class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label text-xs font-bold hover:bg-primary-hover flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                        <span>فتح الكاميرا لتصوير الإيصال</span>
+                      </button>
+                      <button id="uploadGalleryBtn" type="button" class="px-4 py-2 rounded-lg bg-surface-container border border-outline text-on-surface font-label text-xs font-semibold hover:border-primary flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-base">upload_file</span>
+                        <span>اختر صورة من الجهاز</span>
+                      </button>
+                    </div>
+
+                    <input id="cameraFileInput" type="file" accept="image/*" capture="environment" class="hidden">
+                    <input id="galleryFileInput" type="file" accept="image/*" class="hidden">
+                  </div>
+
+                  <!-- Receipt Preview -->
+                  <div id="receiptPreviewBox" class="hidden border border-primary rounded-xl p-3 bg-surface flex items-center gap-3">
+                    <img id="receiptPreviewImg" src="" alt="إيصال" class="w-16 h-16 object-cover rounded-lg border border-outline">
+                    <div class="flex-1 flex flex-col gap-1">
+                      <span class="font-title text-xs font-bold text-success">تم التقاط وحفظ الإيصال بنجاح ✓</span>
+                      <span id="receiptFileName" class="font-mono text-xs text-on-surface-variant truncate"></span>
+                      <button id="removeReceiptBtn" type="button" class="w-fit text-error text-xs hover:underline">حذف وإعادة التصوير</button>
+                    </div>
+                  </div>
+                  <span id="receiptError" role="alert" class="hidden font-body text-xs text-error font-medium">يرجى تصوير أو إرفاق صورة إيصال فودافون كاش قبل تأكيد الطلب</span>
+                </div>
+
+              </div>
+            </div>
+
+          </fieldset>
+        </section>
+
+      </div>
+
+      <!-- Left Column: Order Summary (5 cols) -->
+      <aside class="lg:col-span-5 lg:sticky lg:top-20 flex flex-col gap-4">
+        <article class="bg-surface-container border border-outline rounded-2xl p-6 flex flex-col gap-5 shadow-xl">
+          <header class="flex items-center justify-between border-b border-outline pb-3.5">
+            <h2 class="font-title text-lg font-bold text-on-surface">ملخص مشترياتك</h2>
+            <span class="font-label text-xs font-bold text-success">شحن سريع</span>
+          </header>
+
+          <!-- Order Items -->
+          <div id="checkoutItems" class="flex flex-col gap-2.5 max-h-72 overflow-y-auto pr-1">
+            <!-- Injected by js/checkout.js -->
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="border-t border-outline pt-4 flex flex-col gap-2.5 text-sm">
+            <div class="flex items-center justify-between font-body text-on-surface-variant">
+              <span>المجموع الفرعي:</span>
+              <span id="summarySubtotal" class="font-mono text-on-surface font-bold tabular-nums">٠ ج.م</span>
+            </div>
+            <div class="flex items-center justify-between font-body text-on-surface-variant">
+              <span>مصاريف الشحن والتوصيل:</span>
+              <span class="text-success font-bold">مجاني بمناسبة الافتتاح 🎁</span>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-outline">
+              <span class="font-title text-base font-bold text-on-surface">المبلغ الإجمالي عند الاستلام:</span>
+              <span id="summaryTotal" class="font-headline text-2xl text-primary font-black tabular-nums">٠ ج.م</span>
+            </div>
+          </div>
+
+          <!-- Submit Order Button -->
+          <button 
+            id="submitOrderBtn" 
+            type="submit" 
+            class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-on-primary font-label text-base font-black transition-all hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary shadow-lg shadow-primary/25 cursor-pointer"
+          >
+            <span id="submitBtnText">تأكيد الطلب الآن — الدفع عند الاستلام</span>
+            <span id="submitBtnIcon" class="material-symbols-outlined text-xl" aria-hidden="true">check_circle</span>
+          </button>
+
+          <div class="flex items-center justify-center gap-2 text-xs font-semibold text-on-surface-variant text-center">
+            <span class="material-symbols-outlined text-success text-base">verified_user</span>
+            <span>معاينة المنتجات بالكامل مع المندوب قبل دفع أي شيء</span>
+          </div>
+        </article>
+      </aside>
+
+    </form>
+  </main>
+
+  <!-- Live Camera Modal -->
+  <dialog id="cameraModal" class="bg-surface-container text-on-surface border border-outline rounded-2xl p-5 max-w-lg w-full backdrop:bg-black/90 shadow-2xl">
+    <header class="flex items-center justify-between border-b border-outline pb-3 mb-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">photo_camera</span>
+        <h3 class="font-title text-base font-bold text-on-surface">تصوير إيصال التحويل بالكاميرا</h3>
+      </div>
+      <button id="closeCameraModalBtn" type="button" aria-label="إغلاق" class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline text-on-surface-variant hover:text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-lg" aria-hidden="true">close</span>
+      </button>
+    </header>
+
+    <div class="relative rounded-xl overflow-hidden bg-black aspect-video flex items-center justify-center mb-4 border border-outline">
+      <video id="cameraVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+      <canvas id="cameraCanvas" class="hidden"></canvas>
+    </div>
+
+    <div class="flex items-center justify-between gap-3">
+      <button id="fallbackFileBtn" type="button" class="px-4 py-2 rounded-lg bg-surface-container-high border border-outline text-on-surface font-label text-xs hover:border-primary transition-colors">
+        رفع من الملفات
+      </button>
+      <button id="snapPhotoBtn" type="button" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label text-sm font-bold hover:bg-primary-hover transition-colors">
+        <span class="material-symbols-outlined text-lg" aria-hidden="true">photo_camera</span>
+        <span>التقاط الصورة</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Order Confirmed Modal -->
+  <dialog id="orderConfirmedModal" class="bg-surface-container text-on-surface border-2 border-primary rounded-2xl p-6 max-w-md w-full backdrop:bg-black/90 shadow-2xl">
+    <div class="flex flex-col items-center text-center gap-4">
+      <div class="w-16 h-16 rounded-full bg-success/20 border-2 border-success flex items-center justify-center text-success">
+        <span class="material-symbols-outlined text-4xl" aria-hidden="true">verified</span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <h2 class="font-headline font-bold text-2xl text-on-surface">تم تسجيل طلبك بنجاح! 🎉</h2>
+        <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+          شكراً لثقتك بنا. تم إرسال بيانات طلبك إلى السيستم ولوحة المبيعات وسيصلك اتصال لتأكيد موعد التوصيل.
+        </p>
+      </div>
+
+      <!-- Summary Details -->
+      <div class="w-full bg-surface-container-low border border-outline rounded-xl p-4 flex flex-col gap-2.5 text-right font-body text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-on-surface-variant">رقم الطلب:</span>
+          <span id="confirmedOrderId" dir="ltr" class="font-mono text-sm text-primary font-bold tabular-nums"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-on-surface-variant">العميل:</span>
+          <span id="confirmedCustomer" class="font-title font-bold text-on-surface"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-on-surface-variant">رقم الهاتف:</span>
+          <span id="confirmedPhone" dir="ltr" class="font-mono text-on-surface font-semibold"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-on-surface-variant">المبلغ الإجمالي:</span>
+          <span id="confirmedTotal" class="font-mono text-sm text-primary font-bold"></span>
+        </div>
+        <div class="flex items-center justify-between pt-2 border-t border-outline">
+          <span class="text-on-surface-variant">طريقة الدفع:</span>
+          <span id="confirmedReceiptStatus" class="font-label text-xs font-bold text-success">الدفع عند الاستلام نقداً</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col gap-2.5 w-full">
+        <a 
+          id="whatsappConfirmBtn" 
+          href="#" 
+          target="_blank" 
+          rel="noopener"
+          class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-black font-label text-sm font-bold hover:bg-[#20ba59] transition-colors shadow-md"
+        >
+          <span class="material-symbols-outlined text-lg">chat</span>
+          <span>تأكيد الموعد عبر واتساب مع المتجر</span>
+        </a>
+
+        <a 
+          href="sales.html" 
+          class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-surface-container border border-primary text-primary font-label text-xs font-bold hover:bg-primary-container transition-colors"
+        >
+          <span class="material-symbols-outlined text-base">dashboard</span>
+          <span>مشاهدة الطلب في لوحة المبيعات (Sales)</span>
+        </a>
+
+        <a 
+          href="index.html" 
+          class="w-full inline-flex items-center justify-center py-2.5 rounded-xl bg-surface-container-high border border-outline text-on-surface font-label text-xs hover:border-primary transition-colors"
+        >
+          <span>العودة إلى المتجر للتسوق</span>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modular Checkout Script -->
+  <script type="module" src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إتمام الطلب والدفع — دار النخبة</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#C5A059',
+        'on-primary': '#121212',
+        'primary-container': '#261900',
+        'on-primary-container': '#FFDEA5',
+        'secondary': '#BDA986',
+        'on-secondary': '#121212',
+        'surface': '#121212',
+        'surface-container-low': '#161616',
+        'surface-container': '#1A1A1A',
+        'surface-container-high': '#242424',
+        'on-surface': '#F5F5F0',
+        'on-surface-variant': '#B5AA99',
+        'outline': '#4E4639',
+        'outline-variant': '#313030',
+        'success': '#6BA37A',
+        'on-success': '#121212',
+        'success-container': '#142619',
+        'on-success-container': '#B8E6C4',
+        'error': '#FF897D',
+        'on-error': '#410002',
+        'error-container': '#410002',
+        'on-error-container': '#FFDAD6',
+      },
+      borderRadius: {
+        'sm': '8px',
+        'DEFAULT': '12px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '64px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Cairo"', 'sans-serif'],
+        'headline': ['"Cairo"', 'sans-serif'],
+        'title': ['"Cairo"', 'sans-serif'],
+        'body': ['"Cairo"', 'sans-serif'],
+        'label': ['"Cairo"', 'sans-serif'],
+        'mono': ['"IBM Plex Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['48px', { lineHeight: '58px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '42px', letterSpacing: '0px', fontWeight: '700' }],
+        'headline-lg': ['36px', { lineHeight: '46px', letterSpacing: '0px', fontWeight: '700' }],
+        'headline-lg-mobile': ['26px', { lineHeight: '36px', letterSpacing: '0px', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '34px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-lg': ['20px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '600' }],
+        'mono-md': ['14px', { lineHeight: '20px', letterSpacing: '0.5px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '280ms',
+        'surface-exit': '180ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>.material-symbols-outlined { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }</style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Focused Checkout Header -->
+    <header class="sticky top-0 z-40 bg-surface border-b border-outline-variant">
+      <div class="max-w-7xl mx-auto px-gutter-lg py-gutter-md flex items-center justify-between gap-gutter-md">
+        <a href="../storefront/Storefront.html" class="inline-flex items-center gap-gutter-sm font-label text-label-lg text-on-surface-variant hover:text-primary transition-colors duration-state-change" data-design-text-token="label-lg">
+          <span class="material-symbols-outlined text-title-lg" aria-hidden="true">arrow_forward</span>
+          <span>العودة إلى المتجر</span>
+        </a>
+
+        <div class="flex items-center gap-gutter-sm">
+          <span class="w-8 h-8 rounded bg-primary-container border border-primary flex items-center justify-center text-primary font-display text-title-md">ن</span>
+          <span class="font-headline text-title-lg text-on-surface" data-design-text-token="title-lg">دار النخبة</span>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-gutter-xs text-primary">
+          <span class="material-symbols-outlined text-title-md" aria-hidden="true">lock</span>
+          <span class="font-label text-label-md" data-design-text-token="label-md">دفع آمن ومشفّر</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl mx-auto w-full px-gutter-lg py-gutter-xl">
+      <div class="mb-gutter-xl">
+        <h1 class="font-headline text-headline-lg-mobile lg:text-headline-lg text-on-surface text-balance" data-design-text-token="headline-lg">
+          إتمام الطلب وتأكيد الدفع
+        </h1>
+        <p class="font-body text-body-md text-on-surface-variant mt-1 text-pretty" data-design-text-token="body-md">
+          أدخل بيانات التوصيل واختر وسيلة الدفع المناسبة لك
+        </p>
+      </div>
+
+      <form id="checkoutForm" novalidate class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-xl items-start">
+        <!-- Right Column: Customer Details & Payment Method -->
+        <div class="lg:col-span-7 flex flex-col gap-gutter-xl">
+
+          <!-- Shipping Details Card -->
+          <section class="bg-surface-container border border-outline-variant rounded-lg p-gutter-lg flex flex-col gap-gutter-lg">
+            <header class="flex items-center gap-gutter-sm border-b border-outline-variant pb-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-primary" aria-hidden="true">local_shipping</span>
+              <h2 class="font-title text-title-lg text-on-surface" data-design-text-token="title-lg">بيانات الشحن والتوصيل</h2>
+            </header>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter-lg">
+              <!-- 1. Full Name -->
+              <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-sm">
+                <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">الاسم بالكامل <span class="text-primary">*</span></span>
+                <input id="fullName" type="text" required placeholder="مثال: أحمد محمد المنصور" class="w-full rounded bg-surface-container-low border border-outline-variant px-gutter-md py-3 font-body text-body-md text-on-surface placeholder:text-on-surface-variant/50 transition-colors duration-state-change focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none">
+                <span id="fullNameError" role="alert" class="hidden font-body text-label-md text-error">يرجى إدخال الاسم بالكامل (٣ أحرف على الأقل)</span>
+              </label>
+
+              <!-- 2. Egyptian Phone / WhatsApp -->
+              <label data-component-id="input-field-icon" data-component-type="input-field" data-component-variant="with-icon" class="flex flex-col gap-gutter-sm">
+                <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">رقم الهاتف / الواتساب <span class="text-primary">*</span></span>
+                <div class="relative flex items-center">
+                  <span class="absolute right-gutter-md text-on-surface-variant pointer-events-none" aria-hidden="true">
+                    <span class="material-symbols-outlined text-title-lg">call</span>
+                  </span>
+                  <input id="phone" type="tel" inputmode="numeric" dir="ltr" required placeholder="010 1234 5678" class="w-full rounded bg-surface-container-low border border-outline-variant pr-11 pl-gutter-md py-3 font-mono text-mono-md text-on-surface text-right placeholder:text-on-surface-variant/50 tabular-nums transition-colors duration-state-change focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none">
+                </div>
+                <span id="phoneHint" class="font-body text-label-md text-on-surface-variant">أرقام مصرية (010 / 011 / 012 / 015)</span>
+                <span id="phoneError" role="alert" class="hidden font-body text-label-md text-error">يرجى إدخال رقم هاتف مصري صحيح مكون من ١١ رقماً</span>
+              </label>
+            </div>
+
+            <!-- 3. Detailed Address -->
+            <label class="flex flex-col gap-gutter-sm">
+              <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">العنوان بالتفصيل <span class="text-primary">*</span></span>
+              <textarea id="address" rows="3" required placeholder="المحافظة، المدينة / الحي، اسم الشارع، رقم العقار والشقة، وأقرب علامة مميزة" class="w-full rounded bg-surface-container-low border border-outline-variant px-gutter-md py-3 font-body text-body-md text-on-surface placeholder:text-on-surface-variant/50 transition-colors duration-state-change focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"></textarea>
+              <span id="addressError" role="alert" class="hidden font-body text-label-md text-error">يرجى كتابة العنوان بالتفصيل لضمان سرعة التوصيل</span>
+            </label>
+
+            <!-- 4. Order Notes -->
+            <label class="flex flex-col gap-gutter-sm">
+              <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">ملاحظات إضافية (اختياري)</span>
+              <textarea id="notes" rows="2" placeholder="تعليمات لمندوب التوصيل أو ملاحظات خاصة بالمقاسات..." class="w-full rounded bg-surface-container-low border border-outline-variant px-gutter-md py-3 font-body text-body-md text-on-surface placeholder:text-on-surface-variant/50 transition-colors duration-state-change focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"></textarea>
+            </label>
+          </section>
+
+          <!-- Payment Method Selector -->
+          <section class="bg-surface-container border border-outline-variant rounded-lg p-gutter-lg flex flex-col gap-gutter-lg">
+            <header class="flex items-center gap-gutter-sm border-b border-outline-variant pb-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-primary" aria-hidden="true">payments</span>
+              <h2 class="font-title text-title-lg text-on-surface" data-design-text-token="title-lg">طريقة الدفع</h2>
+            </header>
+
+            <fieldset data-component-id="radio-standard" data-component-type="radio" data-component-variant="standard" class="flex flex-col gap-gutter-md">
+              <legend class="sr-only">اختر طريقة الدفع</legend>
+
+              <!-- Option A: Cash on Delivery -->
+              <label id="codCard" class="flex items-center gap-gutter-md p-gutter-lg rounded-lg bg-surface-container-low border border-outline-variant cursor-pointer transition-colors duration-state-change hover:border-outline">
+                <input type="radio" name="paymentMethod" value="cod" class="text-primary bg-surface border-outline focus:ring-primary">
+                <div class="flex-1 flex flex-col gap-gutter-xs">
+                  <div class="flex items-center justify-between gap-gutter-sm">
+                    <span class="font-title text-title-md text-on-surface" data-design-text-token="title-md">الدفع عند الاستلام (COD)</span>
+                    <span class="material-symbols-outlined text-title-lg text-on-surface-variant" aria-hidden="true">local_atm</span>
+                  </div>
+                  <span class="inline-flex w-fit items-center gap-gutter-xs px-gutter-sm py-1 rounded-sm bg-surface-container border border-outline-variant font-body text-label-md text-on-surface-variant" data-design-text-token="label-md">
+                    الدفع نقداً عند استلام الطلب ومعاينة المنتج
+                  </span>
+                </div>
+              </label>
+
+              <!-- Option B: Vodafone Cash -->
+              <div id="vfWrapper" class="rounded-lg bg-surface-container-low border border-primary transition-colors duration-state-change overflow-hidden">
+                <label class="flex items-center gap-gutter-md p-gutter-lg cursor-pointer">
+                  <input type="radio" name="paymentMethod" value="vodafone" checked class="text-primary bg-surface border-outline focus:ring-primary">
+                  <div class="flex-1 flex flex-col gap-gutter-xs">
+                    <div class="flex items-center justify-between gap-gutter-sm">
+                      <span class="font-title text-title-md text-on-surface" data-design-text-token="title-md">الدفع عبر فودافون كاش (Vodafone Cash)</span>
+                      <span class="px-gutter-sm py-0.5 rounded-full bg-primary-container text-on-primary-container font-label text-label-md" data-design-text-token="label-md">تأكيد فوري</span>
+                    </div>
+                    <span class="font-body text-body-md text-on-surface-variant" data-design-text-token="body-md">حوّل قيمة الطلب ثم صوّر أو ارفع إيصال التحويل لإتمام الطلب</span>
+                  </div>
+                </label>
+
+                <!-- Smoothly Expanded Vodafone Cash Verification Box -->
+                <div id="vfVerificationBox" class="px-gutter-lg pb-gutter-lg pt-gutter-sm border-t border-outline-variant flex flex-col gap-gutter-lg">
+                  <!-- Wallet Number & 1-Click Copy -->
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-gutter-md p-gutter-md rounded bg-surface-container border border-outline">
+                    <div class="flex flex-col gap-0.5">
+                      <span class="font-label text-label-md text-on-surface-variant" data-design-text-token="label-md">رقم محفظة فودافون كاش للمتجر</span>
+                      <span id="vfWalletNumber" dir="ltr" class="font-mono text-title-lg text-primary tabular-nums select-all">0109 842 7510</span>
+                    </div>
+                    <button id="copyWalletBtn" type="button" class="inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-2.5 rounded bg-primary-container border border-primary text-on-primary-container font-label text-label-lg hover:bg-primary hover:text-on-primary transition-colors duration-state-change">
+                      <span id="copyIcon" class="material-symbols-outlined text-title-md" aria-hidden="true">content_copy</span>
+                      <span id="copyText" data-design-text-token="label-lg">نسخ الرقم</span>
+                    </button>
+                  </div>
+
+                  <!-- Mandatory Receipt Upload & Live Camera Capture Dropzone -->
+                  <div class="flex flex-col gap-gutter-sm">
+                    <div class="flex items-center justify-between">
+                      <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">إيصال التحويل (إلزامي لفودافون كاش) <span class="text-primary">*</span></span>
+                      <span id="receiptStatusBadge" class="hidden font-label text-label-md text-success">تم الإرفاق ✓</span>
+                    </div>
+
+                    <!-- Dropzone Empty State -->
+                    <div id="receiptDropzone" class="border-2 border-dashed border-outline rounded-lg p-gutter-lg bg-surface flex flex-col items-center text-center gap-gutter-md">
+                      <div class="w-12 h-12 rounded-full bg-primary-container border border-primary flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-headline-md" aria-hidden="true">receipt_long</span>
+                      </div>
+                      <div class="flex flex-col gap-1">
+                        <p class="font-title text-title-md text-on-surface" data-design-text-token="title-md">أرفق صورة إيصال التحويل أو رسالة التأكيد</p>
+                        <p class="font-body text-body-md text-on-surface-variant" data-design-text-token="body-md">يمكنك فتح الكاميرا مباشرة لتصوير الشاشة أو اختيار لقطة شاشة من جهازك</p>
+                      </div>
+
+                      <div class="flex flex-wrap items-center justify-center gap-gutter-md w-full pt-gutter-xs">
+                        <button id="openCameraBtn" type="button" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-3 rounded bg-primary text-on-primary font-label text-label-lg hover:bg-secondary transition-colors duration-state-change">
+                          <span class="material-symbols-outlined text-title-lg" aria-hidden="true">photo_camera</span>
+                          <span data-design-text-token="label-lg">فتح الكاميرا لتصوير الإيصال</span>
+                        </button>
+
+                        <button id="uploadGalleryBtn" type="button" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-3 rounded bg-surface-container border border-outline text-on-surface font-label text-label-lg hover:border-primary hover:text-primary transition-colors duration-state-change">
+                          <span class="material-symbols-outlined text-title-lg" aria-hidden="true">upload_file</span>
+                          <span data-design-text-token="label-lg">اختر صورة من الجهاز</span>
+                        </button>
+                      </div>
+
+                      <!-- Hidden File Inputs -->
+                      <input id="cameraFileInput" type="file" accept="image/*" capture="environment" class="hidden">
+                      <input id="galleryFileInput" type="file" accept="image/*" class="hidden">
+                    </div>
+
+                    <!-- Live Image Preview State -->
+                    <div id="receiptPreviewBox" class="hidden border border-primary rounded-lg p-gutter-md bg-surface flex flex-col sm:flex-row items-center gap-gutter-md">
+                      <img id="receiptPreviewImg" src alt="معاينة إيصال التحويل" class="w-28 h-28 object-cover rounded border border-outline-variant shrink-0">
+                      <div class="flex-1 flex flex-col gap-gutter-sm text-center sm:text-right">
+                        <div>
+                          <p class="font-title text-title-md text-on-surface" data-design-text-token="title-md">تم التقاط صورة الإيصال بنجاح</p>
+                          <p id="receiptFileName" class="font-mono text-label-md text-on-surface-variant mt-0.5"></p>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-gutter-sm">
+                          <button id="retakeReceiptBtn" type="button" class="inline-flex items-center gap-1.5 px-gutter-md py-2 rounded bg-surface-container border border-outline text-on-surface font-label text-label-md hover:border-primary">
+                            <span class="material-symbols-outlined text-title-md" aria-hidden="true">refresh</span>
+                            <span>إعادة التصوير / تغيير</span>
+                          </button>
+                          <button id="removeReceiptBtn" type="button" class="inline-flex items-center gap-1.5 px-gutter-md py-2 rounded bg-error-container border border-error text-on-error-container font-label text-label-md">
+                            <span class="material-symbols-outlined text-title-md" aria-hidden="true">delete</span>
+                            <span>حذف</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span id="receiptError" role="alert" class="hidden font-body text-label-md text-error">يرجى تصوير أو إرفاق صورة إيصال فودافون كاش قبل تأكيد الطلب</span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+        </div>
+
+        <!-- Left Column: Order Summary -->
+        <aside class="lg:col-span-5 lg:sticky lg:top-24">
+          <article data-component-id="card-elevated" data-component-type="card" data-component-variant="elevated" class="bg-surface-container border border-outline-variant rounded-lg p-gutter-lg flex flex-col gap-gutter-lg">
+            <header class="flex items-center justify-between border-b border-outline-variant pb-gutter-md">
+              <h2 class="font-title text-title-lg text-on-surface" data-design-text-token="title-lg">ملخص الطلب</h2>
+              <span class="font-label text-label-md text-primary" data-design-text-token="label-md">شحن سريع مجاني</span>
+            </header>
+
+            <div id="checkoutItems" class="flex flex-col gap-gutter-md"></div>
+
+            <div class="border-t border-outline-variant pt-gutter-md flex flex-col gap-gutter-sm">
+              <div class="flex items-center justify-between font-body text-body-md text-on-surface-variant">
+                <span>المجموع الفرعي</span>
+                <span id="summarySubtotal" class="tabular-nums">١٥,٤٥٠ ج.م</span>
+              </div>
+              <div class="flex items-center justify-between font-body text-body-md text-on-surface-variant">
+                <span>التغليف الفاخر والشحن</span>
+                <span class="text-success">مجاني</span>
+              </div>
+              <div class="flex items-center justify-between pt-gutter-sm border-t border-outline-variant">
+                <span class="font-title text-title-lg text-on-surface" data-design-text-token="title-lg">الإجمالي المستحق</span>
+                <span id="summaryTotal" class="font-headline text-headline-md text-primary tabular-nums" data-design-text-token="headline-md">١٥,٤٥٠ ج.م</span>
+              </div>
+            </div>
+
+            <button id="submitOrderBtn" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" type="submit" class="w-full inline-flex items-center justify-center gap-gutter-sm px-gutter-xl py-4 rounded bg-primary text-on-primary font-label text-label-lg transition-colors duration-state-change hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+              <span id="submitBtnText" data-design-text-token="label-lg">تأكيد الطلب</span>
+              <span id="submitBtnIcon" class="material-symbols-outlined text-title-lg" aria-hidden="true">check_circle</span>
+            </button>
+
+            <p class="font-body text-label-md text-on-surface-variant text-center">
+              بالضغط على تأكيد الطلب فإنك توافق على سياسة الاستبدال والاسترجاع خلال ١٤ يوماً
+            </p>
+          </article>
+        </aside>
+      </form>
+    </main>
+  </div>
+
+  <!-- Live HTML5 MediaDevices Camera Modal (for desktop/laptop users) -->
+  <dialog id="cameraModal" class="bg-surface-container text-on-surface border border-outline-variant rounded-lg p-gutter-lg max-w-lg w-full backdrop:bg-surface/80">
+    <header class="flex items-center justify-between border-b border-outline-variant pb-gutter-md mb-gutter-md">
+      <h3 class="font-title text-title-lg text-on-surface">تصوير إيصال التحويل</h3>
+      <button id="closeCameraModalBtn" type="button" aria-label="إغلاق الكاميرا" class="w-9 h-9 rounded bg-surface-container-high text-on-surface-variant hover:text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-title-lg" aria-hidden="true">close</span>
+      </button>
+    </header>
+    <div class="relative rounded overflow-hidden bg-surface aspect-video flex items-center justify-center mb-gutter-md">
+      <video id="cameraVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+      <canvas id="cameraCanvas" class="hidden"></canvas>
+    </div>
+    <div class="flex items-center justify-end gap-gutter-sm">
+      <button id="fallbackFileBtn" type="button" class="px-gutter-md py-2.5 rounded bg-surface-container-high border border-outline text-on-surface font-label text-label-md">رفع من الملفات</button>
+      <button id="snapPhotoBtn" type="button" class="inline-flex items-center gap-gutter-xs px-gutter-lg py-2.5 rounded bg-primary text-on-primary font-label text-label-lg">
+        <span class="material-symbols-outlined text-title-lg" aria-hidden="true">photo_camera</span>
+        <span>التقاط الصورة</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Order Confirmed Luxury Modal -->
+  <dialog id="orderConfirmedModal" data-component-id="modal-standard" data-component-type="modal" data-component-variant="standard" aria-labelledby="confirmedTitle" class="bg-surface-container text-on-surface border border-primary rounded-lg p-gutter-xl max-w-md w-full backdrop:bg-surface/85">
+    <div class="flex flex-col items-center text-center gap-gutter-md">
+      <div class="w-16 h-16 rounded-full bg-success-container border border-success flex items-center justify-center text-success">
+        <span class="material-symbols-outlined text-headline-lg" aria-hidden="true">verified</span>
+      </div>
+      <h2 id="confirmedTitle" class="font-headline text-headline-md text-on-surface" data-design-text-token="headline-md">تم استلام طلبك بنجاح</h2>
+      <p class="font-body text-body-md text-on-surface-variant text-pretty" data-design-text-token="body-md">
+        شكراً لاختيارك دار النخبة. سيتواصل معك فريق خدمة العملاء خلال دقائق لتأكيد موعد الشحن.
+      </p>
+
+      <div class="w-full bg-surface-container-low border border-outline-variant rounded p-gutter-md flex flex-col gap-gutter-sm text-right">
+        <div class="flex items-center justify-between">
+          <span class="font-body text-body-md text-on-surface-variant">رقم الطلب</span>
+          <span id="confirmedOrderId" dir="ltr" class="font-mono text-mono-md text-primary tabular-nums">#NK-84920</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-body-md text-on-surface-variant">العميل</span>
+          <span id="confirmedCustomer" class="font-label text-label-lg text-on-surface"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-body-md text-on-surface-variant">حالة الدفع والإيصال</span>
+          <span id="confirmedReceiptStatus" class="font-label text-label-md text-success"></span>
+        </div>
+      </div>
+
+      <a href="../storefront/Storefront.html" class="w-full inline-flex items-center justify-center px-gutter-lg py-3 rounded bg-primary text-on-primary font-label text-label-lg hover:bg-secondary transition-colors duration-state-change">
+        <span>العودة إلى المتجر</span>
+      </a>
+    </div>
+  </dialog>
+
+  <script data-stitch-original-script="9196d14f85660572===../../images/product_suit_obsidian.jpg|||4380c4baf8ec1671===../../images/product_shirt_ivory.jpg">
+    // Load Cart from localStorage or default luxury items
+    let cart = [
+      { id: 'suit-obsidian', title: 'بدلة كشمير إيطالي — أسود فحمي', size: 'L', price: 12800, qty: 1, image: 'https://lh3.googleusercontent.com/aida/ALJJyrD40B5MC01yXFkDxjENJsYaRssUf0WaITDhcOGBPAijkjlkmM3m2Fz1mycFziix8HZYzvzNCQwBYHWGin5ZCGylZ1Y2IggFZ_0YkDIOowIeaj0v_x7SBi7VTzIyd9FeZZO-lmqSh8my8RRfbyjGGoStGtmP_069j0iDKd8lU34gg081yP5EXfbrwbuXkBXpO3PKr6WbUPdbRsPjiR9QuXYbDW65Dw4IPBvtIyS5qslPGLkQxp5klYqAmliwDI9mYQ' },
+      { id: 'shirt-ivory', title: 'قميص قطن مصري — عاجي فاخر', size: 'L', price: 2650, qty: 1, image: 'https://lh3.googleusercontent.com/aida/ALJJyrDavU-QEB2ejDrZIwNyPr946n8jPBeW8hjebc4tAMpUTV-vDWSxBEJV3Euen99l46Jap1JI-bFEWMA2Nw5RZI_JTU9ezYGQEuQLlK7jn7LurbGDY0L8nk2C_uJgI7xxCjstau3a-HUq2i1Toyc9LigGb0dDJzF7sWi_991bYjbENtxwHA5vpg0mgdB5PNIil_a27rpcvmQd4mjGDkqYCfp4te0BK8nI9I2xBfrhvoKVtvpSXt5fmelFpca98Ga_' }
+    ];
+    try {
+      const saved = localStorage.getItem('nukhba_cart');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.length > 0) cart = parsed;
+      }
+    } catch (e) {}
+
+    function formatEGP(num) {
+      return num.toLocaleString('ar-EG') + ' ج.م';
+    }
+
+    function renderSummary() {
+      const container = document.getElementById('checkoutItems');
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-gutter-md">
+          <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover rounded-sm border border-outline-variant shrink-0">
+          <div class="flex-1 flex flex-col gap-0.5">
+            <h3 class="font-title text-title-md text-on-surface">${item.title}</h3>
+            <span class="font-body text-body-md text-on-surface-variant">المقاس: <span class="font-mono text-primary">${item.size}</span> × <span class="tabular-nums">${item.qty}</span></span>
+          </div>
+          <span class="font-label text-label-lg text-on-surface tabular-nums">${formatEGP(item.price * item.qty)}</span>
+        </div>
+      `).join('');
+      const total = cart.reduce((acc, i) => acc + i.price * i.qty, 0);
+      document.getElementById('summarySubtotal').textContent = formatEGP(total);
+      document.getElementById('summaryTotal').textContent = formatEGP(total);
+    }
+    renderSummary();
+
+    // Payment Method Toggle
+    const codCard = document.getElementById('codCard');
+    const vfWrapper = document.getElementById('vfWrapper');
+    const vfBox = document.getElementById('vfVerificationBox');
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'vodafone') {
+          vfBox.classList.remove('hidden');
+          vfWrapper.classList.replace('border-outline-variant', 'border-primary');
+          codCard.classList.replace('border-primary', 'border-outline-variant');
+        } else {
+          vfBox.classList.add('hidden');
+          codCard.classList.replace('border-outline-variant', 'border-primary');
+          vfWrapper.classList.replace('border-primary', 'border-outline-variant');
+          document.getElementById('receiptError').classList.add('hidden');
+        }
+      });
+    });
+
+    // 1-Click Copy Wallet Number
+    document.getElementById('copyWalletBtn').addEventListener('click', () => {
+      const num = '01098427510';
+      if (navigator.clipboard) navigator.clipboard.writeText(num).catch(() => {});
+      const copyText = document.getElementById('copyText');
+      const copyIcon = document.getElementById('copyIcon');
+      copyText.textContent = 'تم النسخ ✓';
+      copyIcon.textContent = 'check';
+      setTimeout(() => {
+        copyText.textContent = 'نسخ الرقم';
+        copyIcon.textContent = 'content_copy';
+      }, 2500);
+    });
+
+    // Receipt Upload & Live Camera Handling
+    let receiptDataUrl = null;
+    const cameraFileInput = document.getElementById('cameraFileInput');
+    const galleryFileInput = document.getElementById('galleryFileInput');
+    const dropzone = document.getElementById('receiptDropzone');
+    const previewBox = document.getElementById('receiptPreviewBox');
+    const previewImg = document.getElementById('receiptPreviewImg');
+    const fileNameEl = document.getElementById('receiptFileName');
+    const statusBadge = document.getElementById('receiptStatusBadge');
+
+    function handleReceiptFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        receiptDataUrl = ev.target.result;
+        previewImg.src = receiptDataUrl;
+        fileNameEl.textContent = file.name || 'receipt_capture.jpg';
+        dropzone.classList.add('hidden');
+        previewBox.classList.remove('hidden');
+        statusBadge.classList.remove('hidden');
+        document.getElementById('receiptError').classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    cameraFileInput.addEventListener('change', (e) => handleReceiptFile(e.target.files[0]));
+    galleryFileInput.addEventListener('change', (e) => handleReceiptFile(e.target.files[0]));
+    document.getElementById('uploadGalleryBtn').addEventListener('click', () => galleryFileInput.click());
+    document.getElementById('retakeReceiptBtn').addEventListener('click', () => galleryFileInput.click());
+    document.getElementById('removeReceiptBtn').addEventListener('click', () => {
+      receiptDataUrl = null;
+      previewImg.src = '';
+      cameraFileInput.value = '';
+      galleryFileInput.value = '';
+      previewBox.classList.add('hidden');
+      statusBadge.classList.add('hidden');
+      dropzone.classList.remove('hidden');
+    });
+
+    // Camera Trigger: Uses MediaDevices API when available, falls back to capture="environment" file input
+    let activeStream = null;
+    const cameraModal = document.getElementById('cameraModal');
+    const videoEl = document.getElementById('cameraVideo');
+
+    function stopCameraStream() {
+      if (activeStream) {
+        activeStream.getTracks().forEach(t => t.stop());
+        activeStream = null;
+      }
+    }
+
+    document.getElementById('openCameraBtn').addEventListener('click', async () => {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        cameraFileInput.click();
+        return;
+      }
+      try {
+        activeStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        videoEl.srcObject = activeStream;
+        cameraModal.showModal();
+      } catch (err) {
+        cameraFileInput.click();
+      }
+    });
+
+    document.getElementById('closeCameraModalBtn').addEventListener('click', () => {
+      stopCameraStream();
+      cameraModal.close();
+    });
+    document.getElementById('fallbackFileBtn').addEventListener('click', () => {
+      stopCameraStream();
+      cameraModal.close();
+      cameraFileInput.click();
+    });
+    document.getElementById('snapPhotoBtn').addEventListener('click', () => {
+      const canvas = document.getElementById('cameraCanvas');
+      canvas.width = videoEl.videoWidth || 640;
+      canvas.height = videoEl.videoHeight || 480;
+      canvas.getContext('2d').drawImage(videoEl, 0, 0);
+      receiptDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+      previewImg.src = receiptDataUrl;
+      fileNameEl.textContent = 'camera_receipt.jpg';
+      dropzone.classList.add('hidden');
+      previewBox.classList.remove('hidden');
+      statusBadge.classList.remove('hidden');
+      document.getElementById('receiptError').classList.add('hidden');
+      stopCameraStream();
+      cameraModal.close();
+    });
+
+    // Checkout Form Validation & Submission
+    document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.replace(/\s+/g, '');
+      const address = document.getElementById('address').value.trim();
+      const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+      const nameErr = document.getElementById('fullNameError');
+      const phoneErr = document.getElementById('phoneError');
+      const addrErr = document.getElementById('addressError');
+      const receiptErr = document.getElementById('receiptError');
+
+      if (name.length < 3) { nameErr.classList.remove('hidden'); valid = false; } else { nameErr.classList.add('hidden'); }
+      if (!/^01[0125][0-9]{8}$/.test(phone)) { phoneErr.classList.remove('hidden'); valid = false; } else { phoneErr.classList.add('hidden'); }
+      if (address.length < 8) { addrErr.classList.remove('hidden'); valid = false; } else { addrErr.classList.add('hidden'); }
+      if (method === 'vodafone' && !receiptDataUrl) { receiptErr.classList.remove('hidden'); valid = false; } else { receiptErr.classList.add('hidden'); }
+
+      if (!valid) return;
+
+      const btn = document.getElementById('submitOrderBtn');
+      const btnText = document.getElementById('submitBtnText');
+      btn.disabled = true;
+      btnText.textContent = 'جاري تأكيد الطلب...';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btnText.textContent = 'تأكيد الطلب';
+        document.getElementById('confirmedOrderId').textContent = '#NK-' + Math.floor(10000 + Math.random() * 89999);
+        document.getElementById('confirmedCustomer').textContent = name;
+        document.getElementById('confirmedReceiptStatus').textContent = method === 'vodafone' ? 'تم إرفاق إيصال التحويل بنجاح' : 'الدفع نقداً عند الاستلام';
+        document.getElementById('orderConfirmedModal').showModal();
+      }, 650);
+    });
+  </script>
+
+
+</body></html>
