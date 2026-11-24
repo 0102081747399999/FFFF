@@ -1,6 +1,6 @@
 /**
- * دار النخبة — خادم محلي خفيف لتشغيل الموقع
- * Simple Local Static Server for Dar Al-Nukhba Luxury Menswear
+ * متجر شياكة للملابس الرجالي الكاجوال — خادم محلي خفيف
+ * Simple Local Server for Sheyaka Men's Casual Apparel Store
  * Run: node server.js
  */
 
@@ -31,9 +31,9 @@ const server = http.createServer((req, res) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(`
-        <html dir="rtl" style="background:#121212;color:#F5F5F0;font-family:sans-serif;padding:40px;text-align:center;">
+        <html dir="rtl" style="background:#F8FAFC;color:#0F172A;font-family:sans-serif;padding:40px;text-align:center;">
           <h2>الصفحة غير موجودة (404)</h2>
-          <p><a href="/" style="color:#C5A059;">العودة إلى المتجر الرئيسي</a></p>
+          <p><a href="/" style="color:#F97316;font-weight:bold;">العودة إلى المتجر الرئيسي</a></p>
         </html>
       `);
       return;
@@ -54,10 +54,10 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n======================================================`);
-  console.log(`👑 دار النخبة — متجر الأزياء الرجالية الفاخرة`);
+  console.log(`👕 متجر شياكة — أحدث صيحات الملابس الرجالي الكاجوال`);
   console.log(`======================================================`);
   console.log(`✓ المتجر الرئيسي:     http://localhost:${PORT}/index.html`);
-  console.log(`✓ صفحة إتمام الطلب:   http://localhost:${PORT}/checkout.html`);
-  console.log(`✓ لوحة تحكم المبيعات: http://localhost:${PORT}/sales.html`);
+  console.log(`✓ إتمام الطلب والـ GPS: http://localhost:${PORT}/checkout.html`);
+  console.log(`✓ لوحة التحكم الشاملة: http://localhost:${PORT}/dashboard.html`);
   console.log(`======================================================\n`);
 });

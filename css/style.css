@@ -1,37 +1,82 @@
 /* ==========================================================================
-   متجر ملابس رجالي كاجوال وتريندي (Urban & Casual Men's Fashion)
-   Vibrant, Modern, High-Converting & Ergonomic Palette
+   متجر شياكة — ملابس رجالي كاجوال وتريندي
+   Modern, High-Converting Retail E-Commerce Design System
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block');
 
 :root {
-  /* Vibrant & Modern Men's Apparel Palette */
-  --color-primary: #F59E0B;          /* Amber Gold Accent */
-  --color-primary-hover: #D97706;    /* Deep Amber */
-  --color-primary-container: #2A1D07;
-  --color-on-primary: #0F172A;
+  /* Fresh Modern Retail Theme (Light & Crisp by default) */
+  --bg-main: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F5F9;
   
-  --color-secondary: #06B6D4;        /* Cyan for Location & Highlights */
-  --color-secondary-container: #083344;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
   
-  --color-surface: #0B0F19;          /* Deep Modern Midnight */
-  --color-surface-container: #111827;/* Card Background */
-  --color-surface-container-low: #0F172A;
-  --color-surface-container-high: #1E293B;
+  --border-color: #E2E8F0;
+  --border-subtle: #F1F5F9;
   
-  --color-on-surface: #F9FAFB;       /* Crisp White Text */
-  --color-on-surface-variant: #94A3B8; /* Muted Slate */
+  --brand-primary: #F97316;       /* Energetic Fashion Orange */
+  --brand-primary-hover: #EA580C;
+  --brand-primary-light: #FFF7ED;
   
-  --color-outline: #334155;          /* Borders */
-  --color-outline-variant: #1E293B;
+  --brand-secondary: #0284C7;     /* Cyan / GPS Blue */
+  --brand-secondary-light: #E0F2FE;
   
-  --color-success: #10B981;          /* COD Emerald Green */
-  --color-success-container: #064E3B;
+  --brand-success: #10B981;       /* Emerald COD Green */
+  --brand-success-light: #ECFDF5;
   
-  --color-error: #EF4444;            /* Coral Red */
-  --color-error-container: #450A0A;
+  --brand-error: #EF4444;
+  --brand-error-light: #FEF2F2;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Dark mode class if activated */
+body.dark-mode {
+  --bg-main: #0B0F19;
+  --bg-surface: #111827;
+  --bg-card: #1E293B;
+  --bg-subtle: #0F172A;
+  
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-light: #64748B;
+  
+  --border-color: #334155;
+  --border-subtle: #1E293B;
+  
+  --brand-primary-light: #2A1705;
+  --brand-secondary-light: #082F49;
+  --brand-success-light: #064E3B;
+  --brand-error-light: #450A0A;
+}
+
+/* Typography & Layout */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Material Symbols configuration */
@@ -52,70 +97,78 @@
   font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
 }
 
-/* Base Setup */
-html {
-  scroll-behavior: smooth;
-  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  background-color: #0B0F19;
-  color: #F9FAFB;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  background: var(--bg-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #CBD5E1;
   border-radius: 4px;
 }
 
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #F59E0B;
+  background: var(--brand-primary);
 }
 
-/* Glowing Badges & Modern Accents */
-.accent-glow {
-  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+/* Interactive Card Hover & Transitions */
+.fashion-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  border-color: #F59E0B;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.15);
+.fashion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12);
+  border-color: var(--brand-primary);
 }
 
-/* Fast Order Modal & Dialogs */
+body.dark-mode .fashion-card:hover {
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Story Highlights Slider */
+.story-scroll-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.story-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.story-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Modal and Drawer Animations */
 dialog::backdrop {
-  background: rgba(5, 8, 15, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 dialog[open] {
-  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes modalPop {
+@keyframes modalSlideUp {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(12px);
+    transform: scale(0.96) translateY(20px);
   }
   to {
     opacity: 1;
@@ -123,7 +176,6 @@ dialog[open] {
   }
 }
 
-/* Drawer Animation */
 .drawer-transition {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -140,24 +192,29 @@ dialog[open] {
   pointer-events: none;
 }
 
-.luxury-toast {
+.modern-toast {
   pointer-events: auto;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: #111827;
-  border: 1px solid #F59E0B;
-  color: #F9FAFB;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2);
-  animation: toastIn 0.3s ease-out forwards;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: #0F172A;
+  color: #FFFFFF;
+  border: 1px solid #F97316;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  animation: toastEnter 0.3s ease-out forwards;
   max-width: 420px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-@keyframes toastIn {
+body.dark-mode .modern-toast {
+  background: #1E293B;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes toastEnter {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -168,11 +225,11 @@ dialog[open] {
   }
 }
 
-.luxury-toast.toast-leave {
-  animation: toastOut 0.25s ease-in forwards;
+.modern-toast.toast-leave {
+  animation: toastLeave 0.25s ease-in forwards;
 }
 
-@keyframes toastOut {
+@keyframes toastLeave {
   from {
     opacity: 1;
     transform: translateY(0);
@@ -183,67 +240,77 @@ dialog[open] {
   }
 }
 
-/* GPS Button Pulsing Pulse */
-.gps-pulse {
-  animation: gpsGlow 2s infinite alternate;
+/* Floating WhatsApp Button */
+.whatsapp-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
 }
 
-@keyframes gpsGlow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 15px 4px rgba(6, 182, 212, 0.3);
-  }
+.whatsapp-floating-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
 }
 
 /* Status Badges */
-.status-badge {
+.status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   padding: 4px 10px;
   border-radius: 9999px;
   font-size: 12px;
   font-weight: 700;
-  line-height: 1;
 }
 
-.status-pending {
-  background-color: rgba(245, 158, 11, 0.15);
-  color: #FCD34D;
-  border: 1px solid rgba(245, 158, 11, 0.4);
+.status-pill.pending {
+  background-color: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
 }
 
-.status-confirmed {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: #6EE7B7;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+.status-pill.confirmed {
+  background-color: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
 }
 
-.status-shipping {
-  background-color: rgba(6, 182, 212, 0.15);
-  color: #67E8F9;
-  border: 1px solid rgba(6, 182, 212, 0.4);
+.status-pill.shipping {
+  background-color: #E0F2FE;
+  color: #0369A1;
+  border: 1px solid #7DD3FC;
 }
 
-.status-delivered {
-  background-color: rgba(34, 197, 94, 0.2);
-  color: #86EFAC;
-  border: 1px solid rgba(34, 197, 94, 0.5);
+.status-pill.delivered {
+  background-color: #DCFCE7;
+  color: #166534;
+  border: 1px solid #86EFAC;
 }
 
-.status-cancelled {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #FCA5A5;
-  border: 1px solid rgba(239, 68, 68, 0.4);
+.status-pill.cancelled {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
 }
 
-/* Color Swatches Rings */
-.color-dot-active {
-  ring: 2px solid #F59E0B;
-  transform: scale(1.15);
-}
+body.dark-mode .status-pill.pending { background-color: rgba(245, 158, 11, 0.2); color: #FCD34D; border-color: rgba(245, 158, 11, 0.4); }
+body.dark-mode .status-pill.confirmed { background-color: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.4); }
+body.dark-mode .status-pill.shipping { background-color: rgba(6, 182, 212, 0.2); color: #67E8F9; border-color: rgba(6, 182, 212, 0.4); }
+body.dark-mode .status-pill.delivered { background-color: rgba(34, 197, 94, 0.25); color: #86EFAC; border-color: rgba(34, 197, 94, 0.5); }
+body.dark-mode .status-pill.cancelled { background-color: rgba(239, 68, 68, 0.2); color: #FCA5A5; border-color: rgba(239, 68, 68, 0.4); }
 
 /* Print Invoice Styling */
 @media print {

@@ -1,13 +1,12 @@
 /**
- * متجر ملابس رجالي كاجوال — الواجهة والطلب الفوري السريع
- * Storefront Catalog, Fast Direct Order Modal & Slide-Over Cart
+ * متجر شياكة — منطق واجهة المتجر والطلب الفوري السريع
+ * Storefront Catalog, Fast Direct Order Modal, Story Highlights & Cart Drawer
  */
 
 import { PRODUCTS, formatEGP } from './products.js';
 import { cart } from './cart.js';
 import { saveOrder } from './firebase-config.js';
 
-// State per product card
 const selectedSizes = {};
 const selectedColors = {};
 let activeFastOrderProduct = null;
@@ -15,7 +14,9 @@ let fastOrderGpsUrl = '';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCatalog();
+  initThemeToggle();
   initCategoryFilters();
+  initStoryFilters();
   initCartDrawer();
   initQuickView();
   initFastOrderModal();
@@ -26,6 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCartDrawerItems();
   });
 });
+
+/**
+ * Initialize theme toggle
+ */
+function initThemeToggle() {
+  const toggleBtn = document.getElementById('toggleThemeBtn');
+  const themeIcon = document.getElementById('themeIcon');
+
+  const savedTheme = localStorage.getItem('store_theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    if (themeIcon) themeIcon.textContent = 'light_mode';
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('store_theme', isDark ? 'dark' : 'light');
+      if (themeIcon) themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    });
+  }
+}
 
 /**
  * Initialize catalog with default size and color per product
@@ -54,10 +77,10 @@ export function renderProducts(filterCategory = 'all') {
     const activeSize = selectedSizes[p.id] || p.sizes[0];
 
     return `
-      <article class="h-full bg-surface-container border border-outline hover:border-primary rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-md card-hover group">
+      <article class="h-full bg-white border border-slate-200 hover:border-orange-500 rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-sm fashion-card group">
         <div>
           <!-- Product Image & Overlay Badges -->
-          <div class="relative aspect-[3/4] bg-surface-container-low overflow-hidden">
+          <div class="relative aspect-[3/4] bg-slate-100 overflow-hidden">
             <img 
               src="${p.image}" 
               alt="${p.title}" 
@@ -66,7 +89,7 @@ export function renderProducts(filterCategory = 'all') {
             >
             
             ${p.badge ? `
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-primary text-on-primary font-label text-[11px] font-black shadow-md">
+              <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-900/90 text-white font-body text-xs font-black shadow-md backdrop-blur-sm">
                 ${p.badge}
               </span>
             ` : ''}
@@ -74,7 +97,7 @@ export function renderProducts(filterCategory = 'all') {
             <button
               type="button"
               onclick="window.openQuickViewModal('${p.id}')"
-              class="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg bg-surface/90 border border-outline text-on-surface font-label text-xs font-bold hover:border-primary hover:text-primary transition-colors backdrop-blur-sm shadow-md"
+              class="absolute bottom-3 left-3 px-3 py-1.5 rounded-xl bg-white/95 text-slate-800 font-body text-xs font-bold hover:bg-orange-500 hover:text-white transition-all shadow-md cursor-pointer"
             >
               معاينة سريعة
             </button>
@@ -82,27 +105,36 @@ export function renderProducts(filterCategory = 'all') {
 
           <!-- Product Details -->
           <div class="p-4 flex flex-col gap-2.5">
-            <span class="font-label text-xs font-bold text-primary">${p.fabric}</span>
-            <h3 class="font-title text-sm font-bold text-on-surface line-clamp-1">${p.title}</h3>
+            <span class="text-xs font-bold text-orange-600 font-display">${p.fabric}</span>
+            <h3 class="font-display text-sm font-bold text-slate-900 line-clamp-1">${p.title}</h3>
             
+            <!-- Rating -->
+            <div class="flex items-center gap-1 text-xs text-amber-500">
+              <span>⭐⭐⭐⭐⭐</span>
+              <span class="font-mono text-slate-400 text-[11px] font-bold">4.9 (تقييم ممتاز)</span>
+            </div>
+
             <!-- Pricing -->
             <div class="flex items-baseline gap-2 pt-0.5">
-              <span class="font-headline text-xl text-primary font-black tabular-nums">${formatEGP(p.price)}</span>
+              <span class="font-display text-xl text-slate-900 font-black tabular-nums">${formatEGP(p.price)}</span>
               ${p.oldPrice ? `
-                <span class="font-mono text-xs text-on-surface-variant line-through tabular-nums">${formatEGP(p.oldPrice)}</span>
+                <span class="font-mono text-xs text-slate-400 line-through tabular-nums">${formatEGP(p.oldPrice)}</span>
               ` : ''}
+              <span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                شحن مجاني
+              </span>
             </div>
 
             <!-- Color Swatches Selection -->
             <div class="flex flex-col gap-1 pt-1">
-              <span class="text-[11px] font-semibold text-on-surface-variant">اللون: <strong class="text-on-surface text-color-${p.id}">${activeColorName}</strong></span>
+              <span class="text-[11px] font-bold text-slate-500">اللون: <strong class="text-slate-900 text-color-${p.id}">${activeColorName}</strong></span>
               <div class="flex items-center gap-2" role="group" aria-label="الألوان المتوفرة">
                 ${p.colors.map(c => `
                   <button
                     type="button"
                     title="${c.name}"
                     onclick="window.selectProductColor('${p.id}', '${c.name}')"
-                    class="color-btn-${p.id} w-5 h-5 rounded-full border ${c.name === activeColorName ? 'ring-2 ring-primary ring-offset-2 ring-offset-surface border-white scale-110' : 'border-outline'} ${c.class} transition-all cursor-pointer"
+                    class="color-btn-${p.id} w-5 h-5 rounded-full border ${c.name === activeColorName ? 'ring-2 ring-orange-500 ring-offset-2 border-white scale-110' : 'border-slate-300'} ${c.class} transition-all cursor-pointer shadow-sm"
                     data-color="${c.name}"
                   ></button>
                 `).join('')}
@@ -111,13 +143,13 @@ export function renderProducts(filterCategory = 'all') {
 
             <!-- Sizes Selection -->
             <div class="flex flex-col gap-1 pt-1">
-              <span class="text-[11px] font-semibold text-on-surface-variant">المقاس:</span>
+              <span class="text-[11px] font-bold text-slate-500">المقاس:</span>
               <div class="flex flex-wrap items-center gap-1.5" role="group" aria-label="المقاسات">
                 ${p.sizes.map(s => `
                   <button
                     type="button"
                     onclick="window.selectCardSize('${p.id}', '${s}')"
-                    class="size-pill-${p.id} px-2.5 py-1 rounded-md font-mono text-xs font-bold border transition-all cursor-pointer ${s === activeSize ? 'bg-primary text-on-primary border-primary' : 'bg-surface-container-low text-on-surface-variant border-outline hover:border-primary'}"
+                    class="size-pill-${p.id} px-2.5 py-1 rounded-lg font-mono text-xs font-bold border transition-all cursor-pointer ${s === activeSize ? 'bg-orange-500 text-white border-orange-500 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-orange-500'}"
                     data-size="${s}"
                   >${s}</button>
                 `).join('')}
@@ -127,13 +159,13 @@ export function renderProducts(filterCategory = 'all') {
           </div>
         </div>
 
-        <!-- Action CTAs: Fast Buy & Add to Cart -->
+        <!-- Action CTAs -->
         <footer class="p-4 pt-1 flex flex-col gap-2">
-          <!-- Instant Buy Button (One-Click Checkout) -->
+          <!-- Instant 1-Click Buy Button -->
           <button
             type="button"
             onclick="window.triggerFastOrder('${p.id}')"
-            class="w-full py-2.5 rounded-xl bg-primary text-on-primary font-label text-xs font-black transition-all hover:bg-primary-hover shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+            class="w-full py-3 rounded-xl bg-orange-500 text-white font-display text-xs font-black transition-all hover:bg-orange-600 shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <span class="material-symbols-outlined text-base">bolt</span>
             <span>شراء فوري مباشر (الدفع عند الاستلام)</span>
@@ -143,7 +175,7 @@ export function renderProducts(filterCategory = 'all') {
           <button
             type="button"
             onclick="window.addProductToCart('${p.id}')"
-            class="w-full py-2 rounded-xl bg-surface-container-high border border-outline text-on-surface font-label text-xs font-bold transition-colors hover:border-primary hover:text-primary flex items-center justify-center gap-1 cursor-pointer"
+            class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-display text-xs font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer"
           >
             <span class="material-symbols-outlined text-base">shopping_bag</span>
             <span>إضافة إلى السلة</span>
@@ -154,9 +186,6 @@ export function renderProducts(filterCategory = 'all') {
   }).join('');
 }
 
-/**
- * Handle Color and Size Selection
- */
 window.selectProductColor = (productId, colorName) => {
   selectedColors[productId] = colorName;
   const label = document.querySelector(`.text-color-${productId}`);
@@ -165,9 +194,9 @@ window.selectProductColor = (productId, colorName) => {
   document.querySelectorAll(`.color-btn-${productId}`).forEach(btn => {
     const isSelected = btn.dataset.color === colorName;
     if (isSelected) {
-      btn.className = btn.className.replace(/border-outline/, 'border-white') + ' ring-2 ring-primary ring-offset-2 ring-offset-surface scale-110';
+      btn.className = btn.className.replace(/border-slate-300/, 'border-white') + ' ring-2 ring-orange-500 ring-offset-2 scale-110';
     } else {
-      btn.className = btn.className.replace(/ring-2 ring-primary ring-offset-2 ring-offset-surface scale-110/, '') + ' border-outline';
+      btn.className = btn.className.replace(/ring-2 ring-orange-500 ring-offset-2 scale-110/, '') + ' border-slate-300';
     }
   });
 };
@@ -176,12 +205,12 @@ window.selectCardSize = (productId, size) => {
   selectedSizes[productId] = size;
   document.querySelectorAll(`.size-pill-${productId}`).forEach(btn => {
     const isSelected = btn.dataset.size === size;
-    btn.className = `size-pill-${productId} px-2.5 py-1 rounded-md font-mono text-xs font-bold border transition-all cursor-pointer ${isSelected ? 'bg-primary text-on-primary border-primary' : 'bg-surface-container-low text-on-surface-variant border-outline hover:border-primary'}`;
+    btn.className = `size-pill-${productId} px-2.5 py-1 rounded-lg font-mono text-xs font-bold border transition-all cursor-pointer ${isSelected ? 'bg-orange-500 text-white border-orange-500 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-orange-500'}`;
   });
 };
 
 /**
- * Fast 1-Click Order Modal Functionality
+ * Fast 1-Click Order Modal
  */
 window.triggerFastOrder = (productId) => {
   const product = PRODUCTS.find(p => p.id === productId);
@@ -196,14 +225,14 @@ window.triggerFastOrder = (productId) => {
 
   if (summaryContainer) {
     summaryContainer.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" class="w-16 h-18 object-cover rounded-lg border border-outline shrink-0">
+      <img src="${product.image}" alt="${product.title}" class="w-16 h-18 object-cover rounded-xl border border-slate-200 shrink-0">
       <div class="flex-1 flex flex-col gap-0.5">
-        <h4 class="font-title text-xs font-bold text-on-surface line-clamp-1">${product.title}</h4>
-        <div class="flex items-center gap-3 text-xs text-on-surface-variant">
-          <span>المقاس: <strong class="text-primary font-mono">${size}</strong></span>
-          <span>اللون: <strong class="text-secondary">${color}</strong></span>
+        <h4 class="font-display text-xs font-bold text-slate-900 line-clamp-1">${product.title}</h4>
+        <div class="flex items-center gap-3 text-xs text-slate-500">
+          <span>المقاس: <strong class="text-orange-600 font-mono">${size}</strong></span>
+          <span>اللون: <strong class="text-sky-600">${color}</strong></span>
         </div>
-        <span class="font-headline text-base text-primary font-black tabular-nums pt-0.5">${formatEGP(product.price)} (الشحن مجاني)</span>
+        <span class="font-display text-base text-slate-900 font-black tabular-nums pt-0.5">${formatEGP(product.price)} (الشحن مجاني)</span>
       </div>
     `;
   }
@@ -224,11 +253,11 @@ function initFastOrderModal() {
     closeBtn.addEventListener('click', () => modal.close());
   }
 
-  // GPS Geolocation inside Fast Order Modal
+  // GPS Location inside modal
   if (gpsBtn && locationInput) {
     gpsBtn.addEventListener('click', () => {
       if (!navigator.geolocation) {
-        alert("GPS غير متاح، يرجى كتابة اللوكيشن أو العنوان يدوياً.");
+        alert("خاصية تحديد الموقع غير مدعومة، يرجى كتابة اللوكيشن أو العنوان يدوياً.");
         locationInput.focus();
         return;
       }
@@ -241,7 +270,7 @@ function initFastOrderModal() {
           fastOrderGpsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
           locationInput.value = `📍 موقع GPS دقيق: (${lat.toFixed(5)}, ${lng.toFixed(5)})`;
           gpsBtn.textContent = 'تم التقاط الموقع ✓';
-          gpsBtn.className = 'px-2.5 py-1 rounded-md bg-success/20 border border-success text-success font-label text-[11px] font-bold';
+          gpsBtn.className = 'px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-body text-[11px] font-bold';
         },
         () => {
           gpsBtn.textContent = '📍 تحديد موقعي الحالي GPS';
@@ -253,7 +282,7 @@ function initFastOrderModal() {
     });
   }
 
-  // Submit Fast Order directly to Firebase Firestore
+  // Submit Fast Order to Firebase Firestore
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -265,13 +294,13 @@ function initFastOrderModal() {
       const location = locationInput.value.trim() || 'العنوان المسجل';
 
       if (name.length < 3 || phone.length < 11 || address.length < 5) {
-        alert("يرجى التأكد من ملء الاسم ورقم الهاتف المكون من 11 رقماً والعنوان.");
+        alert("يرجى التأكد من ملء الاسم ورقم الهاتف المكون من 11 رقماً والعنوان بالتفصيل.");
         return;
       }
 
       const submitBtn = document.getElementById('fastSubmitBtn');
       submitBtn.disabled = true;
-      submitBtn.textContent = 'جاري إرسال الطلب للوحة المبيعات...';
+      submitBtn.textContent = 'جاري تسجيل الطلب ونزوله بالسيستم...';
 
       const orderNumber = '#M-' + Math.floor(10000 + Math.random() * 89999);
       const size = selectedSizes[activeFastOrderProduct.id] || activeFastOrderProduct.sizes[0];
@@ -314,7 +343,7 @@ function initFastOrderModal() {
 
         showStoreToast(`تم تسجيل طلبك بنجاح (${orderNumber})! سيتواصل معك المندوب.`);
         
-        // WhatsApp customer follow up
+        // Open WhatsApp to store
         const storeWhatsApp = '201098427510';
         let locText = fastOrderGpsUrl ? `\n📍 رابط الخريطة: ${fastOrderGpsUrl}` : `\n📍 اللوكيشن: ${location}`;
         const msg = `مرحباً، قمت بتأكيد طلب سريع رقم ${orderNumber} لمنتج "${activeFastOrderProduct.title}" (مقاس: ${size} - لون: ${color}) بمبلغ ${formatEGP(activeFastOrderProduct.price)} (الدفع عند الاستلام).${locText}`;
@@ -328,9 +357,6 @@ function initFastOrderModal() {
   }
 }
 
-/**
- * Add Product to Cart with Selected Size & Color
- */
 window.addProductToCart = (productId) => {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
@@ -343,9 +369,6 @@ window.addProductToCart = (productId) => {
   openCartDrawer();
 };
 
-/**
- * Slide-Over Cart Drawer Handling
- */
 const cartDrawer = document.getElementById('cartDrawer');
 const cartBackdrop = document.getElementById('cartDrawerBackdrop');
 
@@ -386,8 +409,8 @@ function renderCartDrawerItems() {
 
   if (items.length === 0) {
     container.innerHTML = `
-      <div class="py-12 text-center flex flex-col items-center justify-center gap-2 text-on-surface-variant">
-        <span class="material-symbols-outlined text-4xl text-outline">shopping_bag</span>
+      <div class="py-12 text-center flex flex-col items-center justify-center gap-2 text-slate-400">
+        <span class="material-symbols-outlined text-4xl text-slate-300">shopping_bag</span>
         <p class="font-body text-xs">سلتك فارغة حالياً.</p>
       </div>
     `;
@@ -396,27 +419,27 @@ function renderCartDrawerItems() {
   }
 
   container.innerHTML = items.map((item, idx) => `
-    <div class="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container-low border border-outline">
-      <img src="${item.image}" alt="${item.title}" class="w-14 h-16 object-cover rounded-lg border border-outline shrink-0">
+    <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+      <img src="${item.image}" alt="${item.title}" class="w-14 h-16 object-cover rounded-xl border border-slate-200 shrink-0">
       <div class="flex-1 flex flex-col gap-0.5">
-        <h4 class="font-title text-xs font-bold text-on-surface line-clamp-1">${item.title}</h4>
-        <div class="flex items-center gap-2 text-xs text-on-surface-variant font-mono">
-          <span>المقاس: <strong class="text-primary">${item.size}</strong></span>
-          ${item.color ? `<span>اللون: <strong class="text-secondary">${item.color}</strong></span>` : ''}
+        <h4 class="font-display text-xs font-bold text-slate-900 line-clamp-1">${item.title}</h4>
+        <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+          <span>المقاس: <strong class="text-orange-600">${item.size}</strong></span>
+          ${item.color ? `<span>اللون: <strong class="text-sky-600">${item.color}</strong></span>` : ''}
         </div>
         <div class="flex items-center justify-between pt-1">
-          <span class="font-mono text-xs text-primary font-bold tabular-nums">${formatEGP(item.price * item.qty)}</span>
+          <span class="font-mono text-xs text-slate-900 font-bold tabular-nums">${formatEGP(item.price * item.qty)}</span>
           <div class="flex items-center gap-1">
             <button 
               type="button" 
               onclick="window.adjustCartItemQty(${idx}, -1)" 
-              class="w-6 h-6 rounded bg-surface-container border border-outline text-on-surface hover:border-primary flex items-center justify-center font-mono font-bold text-xs"
+              class="w-6 h-6 rounded bg-white border border-slate-300 text-slate-800 hover:border-orange-500 flex items-center justify-center font-mono font-bold text-xs cursor-pointer"
             >-</button>
             <span class="w-5 text-center font-mono text-xs tabular-nums font-bold">${item.qty}</span>
             <button 
               type="button" 
               onclick="window.adjustCartItemQty(${idx}, 1)" 
-              class="w-6 h-6 rounded bg-surface-container border border-outline text-on-surface hover:border-primary flex items-center justify-center font-mono font-bold text-xs"
+              class="w-6 h-6 rounded bg-white border border-slate-300 text-slate-800 hover:border-orange-500 flex items-center justify-center font-mono font-bold text-xs cursor-pointer"
             >+</button>
           </div>
         </div>
@@ -432,9 +455,6 @@ window.adjustCartItemQty = (index, delta) => {
   cart.updateQty(index, delta);
 };
 
-/**
- * Quick View Modal Logic
- */
 let activeQuickViewProduct = null;
 
 window.openQuickViewModal = (productId) => {
@@ -462,14 +482,12 @@ window.openQuickViewModal = (productId) => {
       <button 
         type="button" 
         onclick="window.selectCardSize('${p.id}', '${s}'); window.openQuickViewModal('${p.id}')" 
-        class="px-3 py-1 rounded-md font-mono text-xs font-bold border transition-all ${selectedSizes[p.id] === s ? 'bg-primary text-on-primary border-primary' : 'bg-surface-container-low text-on-surface-variant border-outline hover:border-primary'}"
+        class="px-3 py-1 rounded-lg font-mono text-xs font-bold border transition-all cursor-pointer ${selectedSizes[p.id] === s ? 'bg-orange-500 text-white border-orange-500' : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-orange-500'}"
       >${s}</button>
     `).join('');
   }
 
-  if (modal && typeof modal.showModal === 'function') {
-    modal.showModal();
-  }
+  if (modal && typeof modal.showModal === 'function') modal.showModal();
 };
 
 function initQuickView() {
@@ -503,10 +521,28 @@ function initCategoryFilters() {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => {
-        b.className = 'filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors';
+        b.className = 'filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer';
       });
-      btn.className = 'filter-btn px-4 py-2 rounded-full bg-primary text-on-primary font-label text-xs font-black transition-colors';
+      btn.className = 'filter-btn px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-black transition-colors cursor-pointer';
       renderProducts(btn.dataset.filter);
+    });
+  });
+}
+
+function initStoryFilters() {
+  document.querySelectorAll('.filter-story-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.category;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        if (b.dataset.filter === cat) {
+          b.className = 'filter-btn px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-black transition-colors cursor-pointer';
+        } else {
+          b.className = 'filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer';
+        }
+      });
+      renderProducts(cat);
+      const collectionSec = document.getElementById('collection');
+      if (collectionSec) collectionSec.scrollIntoView({ behavior: 'smooth' });
     });
   });
 }
@@ -520,9 +556,9 @@ function showStoreToast(msg) {
   }
 
   const toast = document.createElement('div');
-  toast.className = 'luxury-toast';
+  toast.className = 'modern-toast';
   toast.innerHTML = `
-    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span class="material-symbols-outlined text-orange-400 text-lg">check_circle</span>
     <span>${msg}</span>
   `;
 

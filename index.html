@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر ملابس رجالي كاجوال وتريندي — الدفع عند الاستلام</title>
+  <title>متجر شياكة — أحدث صيحات الملابس الرجالي الكاجوال والتريندي</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
@@ -12,42 +12,22 @@
       theme: {
         extend: {
           colors: {
-            'primary': '#F59E0B',
-            'primary-hover': '#D97706',
-            'primary-container': '#2A1D07',
-            'on-primary': '#0F172A',
-            'secondary': '#06B6D4',
-            'surface': '#0B0F19',
-            'surface-container-low': '#0F172A',
-            'surface-container': '#111827',
-            'surface-container-high': '#1E293B',
-            'on-surface': '#F9FAFB',
-            'on-surface-variant': '#94A3B8',
-            'outline': '#334155',
-            'outline-variant': '#1E293B',
+            'primary': '#F97316',
+            'primary-hover': '#EA580C',
+            'primary-light': '#FFF7ED',
+            'secondary': '#0284C7',
+            'secondary-light': '#E0F2FE',
             'success': '#10B981',
-            'on-success': '#0F172A',
-            'success-container': '#064E3B',
-            'on-success-container': '#6EE7B7',
+            'success-light': '#ECFDF5',
             'error': '#EF4444',
-            'on-error': '#FFFFFF',
-            'error-container': '#450A0A',
-            'on-error-container': '#FCA5A5',
-          },
-          borderRadius: {
-            'sm': '8px',
-            'DEFAULT': '12px',
-            'md': '12px',
-            'lg': '16px',
-            'xl': '20px',
-            'full': '9999px',
+            'surface': '#FFFFFF',
+            'surface-dark': '#111827',
+            'card-dark': '#1E293B',
+            'border-subtle': '#E2E8F0',
           },
           fontFamily: {
             'display': ['"Cairo"', 'sans-serif'],
-            'headline': ['"Cairo"', 'sans-serif'],
-            'title': ['"Cairo"', 'sans-serif'],
             'body': ['"Cairo"', 'sans-serif'],
-            'label': ['"Cairo"', 'sans-serif'],
             'mono': ['"IBM Plex Mono"', 'monospace'],
           }
         }
@@ -56,195 +36,269 @@
   </script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-900 font-body antialiased min-h-screen flex flex-col transition-colors">
 
-  <!-- Sticky Modern Header -->
-  <header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-outline">
+  <!-- Top Announcement Bar -->
+  <div class="bg-slate-900 text-white text-[11px] sm:text-xs font-bold py-2 px-4 text-center flex items-center justify-center gap-3">
+    <span class="flex items-center gap-1 text-orange-400">
+      <span class="material-symbols-outlined text-sm">local_shipping</span>
+      الشحن والتوصيل مجاني لجميع المحافظات بمناسبة الافتتاح!
+    </span>
+    <span class="hidden md:inline text-slate-500">|</span>
+    <span class="hidden md:flex items-center gap-1 text-emerald-400">
+      <span class="material-symbols-outlined text-sm">verified_user</span>
+      الدفع نقداً عند الاستلام ومعاينة المقاس والخامة مع المندوب
+    </span>
+  </div>
+
+  <!-- Modern Sticky Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
       
       <!-- Brand Logo -->
       <div class="flex items-center gap-6">
         <a href="index.html" class="flex items-center gap-2.5 focus:outline-none">
-          <span class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center font-display font-black text-xl shadow-md">ش</span>
+          <span class="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center font-display font-black text-xl shadow-md">ش</span>
           <div class="flex flex-col">
-            <span class="font-headline font-black text-lg text-on-surface tracking-wide">ملابس رجالي كاجوال</span>
-            <span class="text-xs text-primary font-semibold -mt-0.5">تيشيرتات • هوديز • كارجو • جينز</span>
+            <span class="font-display font-black text-xl text-slate-900 tracking-wide">متجر شياكة</span>
+            <span class="text-xs text-orange-600 font-bold -mt-1">ملابس رجالي كاجوال وتريندي</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation -->
+        <!-- Desktop Navigation Categories -->
         <nav aria-label="التصنيفات" class="hidden md:flex items-center gap-5">
-          <a href="#collection" class="font-label text-sm text-primary font-bold hover:text-primary-hover transition-colors">كل الملابس</a>
-          <a href="#collection" class="font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors">تيشيرتات وأوفر سايز</a>
-          <a href="#collection" class="font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors">هوديز وسويت شيرت</a>
-          <a href="#collection" class="font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors">بناطيل وكارجو</a>
-          <a href="sales.html" class="inline-flex items-center gap-1.5 font-label text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full border border-primary/30 hover:border-primary transition-all">
-            <span class="material-symbols-outlined text-base">dashboard</span>
-            <span>لوحة المبيعات (Sales)</span>
-          </a>
+          <a href="#collection" class="text-sm font-bold text-orange-600 hover:text-orange-700 transition-colors">كل الملابس</a>
+          <a href="#collection" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">تيشيرتات وأوفر سايز</a>
+          <a href="#collection" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">هوديز وسويت شيرت</a>
+          <a href="#collection" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">بناطيل كارجو وجينز</a>
+          <a href="#collection" class="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">قمصان كاجوال</a>
         </nav>
       </div>
 
-      <!-- Action Buttons -->
+      <!-- Action Buttons & Search Trigger -->
       <div class="flex items-center gap-3">
-        <a href="checkout.html" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-surface-container border border-outline text-on-surface font-label text-xs font-bold hover:border-primary hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-base">local_shipping</span>
-          <span>إتمام الطلب</span>
+        <!-- Dashboard Button -->
+        <a 
+          href="dashboard.html" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 text-white font-body text-xs font-bold hover:bg-slate-800 transition-all shadow-sm"
+          title="لوحة تحكم المتجر والمبيعات وإدارة الطلبات"
+        >
+          <span class="material-symbols-outlined text-base text-orange-400">dashboard</span>
+          <span>لوحة التحكم (Dashboard)</span>
         </a>
 
+        <!-- Cart Button with Counter Badge -->
         <button 
           id="openCartBtn" 
           type="button" 
-          class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline text-on-surface font-label text-xs font-bold transition-all hover:border-primary focus:outline-none shadow-sm cursor-pointer"
+          class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-body text-xs font-bold transition-all hover:border-orange-500 shadow-sm cursor-pointer"
         >
-          <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">shopping_bag</span>
-          <span>السلة</span>
-          <span class="cart-count-badge inline-flex items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-primary text-on-primary font-mono text-xs font-bold tabular-nums">0</span>
+          <span class="material-symbols-outlined text-xl text-orange-600" aria-hidden="true">shopping_bag</span>
+          <span class="hidden sm:inline">السلة</span>
+          <span class="cart-count-badge inline-flex items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-orange-500 text-white font-mono text-xs font-bold tabular-nums">0</span>
+        </button>
+
+        <!-- Dark/Light Mode Switcher -->
+        <button 
+          id="toggleThemeBtn" 
+          type="button" 
+          class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200 flex items-center justify-center transition-colors cursor-pointer"
+          title="تبديل المظهر"
+        >
+          <span id="themeIcon" class="material-symbols-outlined text-lg">dark_mode</span>
         </button>
       </div>
+
     </div>
   </header>
 
   <main class="flex-1">
-    <!-- Hero Banner: Casual Trendy Streetwear -->
-    <section class="relative border-b border-outline overflow-hidden">
-      <div class="relative min-h-[480px] lg:min-h-[560px] flex items-center">
-        <!-- Background Streetwear Image -->
-        <img 
-          src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=1600&auto=format&fit=crop&q=80" 
-          alt="تشكيلة ملابس رجالي كاجوال" 
-          class="absolute inset-0 w-full h-full object-cover object-center"
-        >
-        <!-- Gradients for High Readability -->
-        <div class="absolute inset-0 bg-gradient-to-l from-surface via-surface/90 to-surface/50"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
-
-        <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
-          <div class="max-w-xl flex flex-col gap-4">
-            
-            <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary/20 border border-primary text-primary font-label text-xs font-bold shadow-md">
-                🔥 كولكشن خروجات وشتاء ٢٠٢٦
-              </span>
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-success/20 border border-success text-success font-label text-xs font-bold">
-                ✓ الدفع عند الاستلام والمعاينة
-              </span>
-            </div>
-
-            <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-on-surface leading-tight text-balance">
-              أشيك ملابس رجالي كاجوال وتريندي لخروجاتك اليومية
-            </h1>
-
-            <p class="font-body text-base text-on-surface-variant leading-relaxed max-w-prose">
-              تيشيرتات أوفر سايز قطن ١٠٠٪، هوديز شتوي مبطن ميلتون تقيل، بناطيل كارجو وجينز مريحة، وجاكيتات بامب ووتربروف. اطلب الآن وعاين خامتك مع المندوب قبل دفع أي جنيه!
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <a 
-                href="#collection" 
-                class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-on-primary font-label text-sm font-black transition-all hover:bg-primary-hover focus:outline-none shadow-lg shadow-primary/25"
-              >
-                <span>تسوق الكولكشن الآن</span>
-                <span class="material-symbols-outlined text-lg" aria-hidden="true">arrow_back</span>
-              </a>
-
-              <a 
-                href="checkout.html" 
-                class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container border border-outline text-on-surface font-label text-sm font-bold hover:border-primary hover:text-primary transition-all"
-              >
-                <span>شراء سريع والدفع عند الاستلام</span>
-              </a>
-            </div>
-
-            <!-- Features Bar -->
-            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-outline text-xs font-semibold text-on-surface-variant">
-              <div class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-primary text-base">verified</span>
-                <span>قطن مصري أصلي</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-success text-base">local_shipping</span>
-                <span>توصيل سريع لكل مصر</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-secondary text-base">near_me</span>
-                <span>تحديد اللوكيشن GPS</span>
-              </div>
-            </div>
-
+    
+    <!-- Story-Style Category Highlights Bar -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+      <div class="story-scroll-container pb-2">
+        
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="all">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">🔥</span>
           </div>
+          <span class="text-xs font-bold text-slate-800">كل الكولكشن</span>
         </div>
+
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="tshirt">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-slate-200 hover:border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">👕</span>
+          </div>
+          <span class="text-xs font-bold text-slate-700">تيشيرتات</span>
+        </div>
+
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="hoodie">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-slate-200 hover:border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">🧥</span>
+          </div>
+          <span class="text-xs font-bold text-slate-700">هوديز وسويت</span>
+        </div>
+
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="pants">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-slate-200 hover:border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">👖</span>
+          </div>
+          <span class="text-xs font-bold text-slate-700">كارجو وجينز</span>
+        </div>
+
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="shirt">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-slate-200 hover:border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">👔</span>
+          </div>
+          <span class="text-xs font-bold text-slate-700">قمصان كاجوال</span>
+        </div>
+
+        <div class="story-item flex flex-col items-center gap-1.5 cursor-pointer filter-story-btn" data-category="jacket">
+          <div class="w-16 h-16 rounded-full p-0.5 border-2 border-slate-200 hover:border-orange-500 bg-white shadow-sm flex items-center justify-center overflow-hidden hover:scale-105 transition-transform">
+            <span class="text-2xl">🦺</span>
+          </div>
+          <span class="text-xs font-bold text-slate-700">جاكيتات بامب</span>
+        </div>
+
       </div>
     </section>
 
-    <!-- Product Grid Section -->
-    <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section: Modern High-Impact Retail Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="relative rounded-3xl overflow-hidden bg-slate-900 min-h-[420px] sm:min-h-[480px] flex items-center shadow-xl">
+        
+        <!-- Hero Background Image -->
+        <img 
+          src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=1600&auto=format&fit=crop&q=80" 
+          alt="كولكشن ملابس رجالي كاجوال" 
+          class="absolute inset-0 w-full h-full object-cover object-center opacity-45"
+        >
+        <!-- Gradients -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-transparent"></div>
+
+        <div class="relative z-10 max-w-xl p-6 sm:p-12 flex flex-col gap-4 text-white">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500 text-orange-400 font-bold text-xs">
+              ⚡ تريندات الموسم الجديد ٢٠٢٦
+            </span>
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 font-bold text-xs">
+              ✓ الدفع عند الاستلام والمعاينة
+            </span>
+          </div>
+
+          <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-5xl leading-tight text-balance">
+            ملابس رجالي كاجوال فخمة لخروجاتك اليومية
+          </h1>
+
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-prose">
+            تيشيرتات أوفر سايز قطن نقي، هوديز شتوي ميلتون مبطن، بناطيل كارجو وجينز مريحة. عاين مقاسك وخامتك بنفسك مع المندوب قبل دفع أي شيء!
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a 
+              href="#collection" 
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-orange-500 text-white font-display text-sm font-black hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/30"
+            >
+              <span>تسوق الملابس الآن</span>
+              <span class="material-symbols-outlined text-lg">arrow_back</span>
+            </a>
+
+            <a 
+              href="checkout.html" 
+              class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-display text-sm font-bold backdrop-blur-sm transition-all"
+            >
+              <span>إتمام الطلب السريع</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="flex items-center gap-5 pt-3 text-xs font-semibold text-slate-300 border-t border-slate-700/60">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-orange-400 text-base">verified</span>
+              قطن مصري أصلي
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-emerald-400 text-base">local_shipping</span>
+              شحن مجاني لكل مصر
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sky-400 text-base">near_me</span>
+              تحديد اللوكيشن بالـ GPS
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Product Showcase Grid Section -->
+    <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
-        <div class="flex flex-col gap-1">
-          <span class="text-xs font-bold text-primary font-label tracking-wide uppercase">تشكيلة ملابس شبابي ورجالي</span>
-          <h2 class="font-headline font-black text-2xl sm:text-3xl text-on-surface">
-            أحدث القطع والتريندات الحصرية
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">كتالوج الملابس الكاجوال</span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-0.5">
+            أحدث القطع والملابس المختارة
           </h2>
-          <p class="font-body text-xs sm:text-sm text-on-surface-variant">
-            اختر قطعتك المفضلة، حدد المقاس واللون، واطلبها بضغطة زر واحدة
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            اختر قطعتك المناسبة، حدد اللون والمقاس، واطلبها بضغطة واحدة والدفع عند الاستلام
           </p>
         </div>
 
         <!-- Filter Buttons -->
         <div class="flex flex-wrap items-center gap-2" role="group" aria-label="تصفية الملابس">
-          <button type="button" data-filter="all" class="filter-btn px-4 py-2 rounded-full bg-primary text-on-primary font-label text-xs font-black transition-colors">الكل</button>
-          <button type="button" data-filter="tshirt" class="filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors">تيشيرتات وأوفر سايز</button>
-          <button type="button" data-filter="hoodie" class="filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors">هوديز وسويت شيرت</button>
-          <button type="button" data-filter="pants" class="filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors">بناطيل وكارجو وجينز</button>
-          <button type="button" data-filter="shirt" class="filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors">قمصان كاجوال</button>
-          <button type="button" data-filter="jacket" class="filter-btn px-4 py-2 rounded-full bg-surface-container border border-outline text-on-surface-variant font-label text-xs font-bold hover:border-primary transition-colors">جاكيتات كاجوال</button>
+          <button type="button" data-filter="all" class="filter-btn px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-black transition-colors cursor-pointer">الكل</button>
+          <button type="button" data-filter="tshirt" class="filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer">تيشيرتات</button>
+          <button type="button" data-filter="hoodie" class="filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer">هوديز وسويت شيرت</button>
+          <button type="button" data-filter="pants" class="filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer">كارجو وجينز</button>
+          <button type="button" data-filter="shirt" class="filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer">قمصان كاجوال</button>
+          <button type="button" data-filter="jacket" class="filter-btn px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer">جاكيتات</button>
         </div>
       </div>
 
-      <!-- Products Grid Container -->
+      <!-- Products Grid -->
       <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         <!-- Rendered by js/main.js -->
       </div>
     </section>
 
-    <!-- Why Buy From Us Features -->
-    <section class="border-y border-outline bg-surface-container-low py-10">
+    <!-- Features & Guarantee Banner -->
+    <section class="border-t border-slate-200 bg-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right">
           
-          <div class="flex items-start gap-3.5 p-4 rounded-xl bg-surface-container border border-outline">
-            <div class="w-11 h-11 rounded-xl bg-success/20 border border-success flex items-center justify-center text-success shrink-0">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-2xl">local_atm</span>
             </div>
             <div class="flex flex-col gap-1">
-              <h3 class="font-title text-sm font-bold text-on-surface">الدفع عند الاستلام والمعاينة الكاملة</h3>
-              <p class="font-body text-xs text-on-surface-variant leading-relaxed">
-                لا تدفع أي أموال مقدماً؛ استلم شحنتك، افتحها وعاين المقاس والخامة مع المندوب ثم ادفع.
+              <h3 class="font-display font-bold text-sm text-slate-900">الدفع نقداً عند استلام ومعاينة الشحنة</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                حقك تعاين القماش والمقاس مع المندوب قبل دفع أي جنيه، لتتأكد من مطابقة المنتج لرغبتك.
               </p>
             </div>
           </div>
 
-          <div class="flex items-start gap-3.5 p-4 rounded-xl bg-surface-container border border-outline">
-            <div class="w-11 h-11 rounded-xl bg-secondary/20 border border-secondary flex items-center justify-center text-secondary shrink-0">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-2xl">my_location</span>
             </div>
             <div class="flex flex-col gap-1">
-              <h3 class="font-title text-sm font-bold text-on-surface">تحديد اللوكيشن GPS بضغطة زر</h3>
-              <p class="font-body text-xs text-on-surface-variant leading-relaxed">
-                حدد موقعك الجغرافي الدقيق بنقرة واحدة لخرائط جوجل ليصلك المندوب لباب منزلك دون اتصالات متكررة.
+              <h3 class="font-display font-bold text-sm text-slate-900">تحديد اللوكيشن GPS بضغطة زر</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                حدد موقعك الجغرافي لخرائط جوجل تلقائياً لتفادي كثرة اتصالات المندوب ووصوله بدقة لباب بيتك.
               </p>
             </div>
           </div>
 
-          <div class="flex items-start gap-3.5 p-4 rounded-xl bg-surface-container border border-outline">
-            <div class="w-11 h-11 rounded-xl bg-primary/20 border border-primary flex items-center justify-center text-primary shrink-0">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-2xl">sync_alt</span>
             </div>
             <div class="flex flex-col gap-1">
-              <h3 class="font-title text-sm font-bold text-on-surface">استبدال واسترجاع سهل وسريع</h3>
-              <p class="font-body text-xs text-on-surface-variant leading-relaxed">
-                المقاس طلع مش مظبوط؟ بنبدلك المقاس فورياً وبدون أي تعقيدات خلال ١٤ يوماً.
+              <h3 class="font-display font-bold text-sm text-slate-900">استبدال مقاس فوري خلال ١٤ يوماً</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                إذا أردت تغيير المقاس لأكبر أو أصغر، فريق الدعم يوفر لك تبديلاً سهلاً وسريعاً فور تواصلك.
               </p>
             </div>
           </div>
@@ -252,25 +306,26 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- Slide-Over Shopping Cart Drawer -->
-  <div id="cartDrawerBackdrop" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm transition-opacity"></div>
+  <div id="cartDrawerBackdrop" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm transition-opacity"></div>
   <aside 
     id="cartDrawer" 
-    class="fixed top-0 left-0 bottom-0 z-50 w-full max-w-md bg-surface-container border-r border-outline flex flex-col justify-between translate-x-[-100%] drawer-transition shadow-2xl"
+    class="fixed top-0 left-0 bottom-0 z-50 w-full max-w-md bg-white border-r border-slate-200 flex flex-col justify-between translate-x-[-100%] drawer-transition shadow-2xl"
     aria-label="سلة المشتريات"
   >
-    <header class="p-4 border-b border-outline flex items-center justify-between">
+    <header class="p-4 border-b border-slate-200 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">shopping_bag</span>
-        <h2 class="font-title text-base font-bold text-on-surface">سلة المشتريات</h2>
-        <span class="cart-count-badge px-2 py-0.5 rounded-full bg-primary text-on-primary font-mono text-xs font-bold">0</span>
+        <span class="material-symbols-outlined text-orange-500 text-xl">shopping_bag</span>
+        <h2 class="font-display text-base font-bold text-slate-900">سلة المشتريات</h2>
+        <span class="cart-count-badge px-2 py-0.5 rounded-full bg-orange-500 text-white font-mono text-xs font-bold">0</span>
       </div>
       <button 
         id="closeCartBtn" 
         type="button" 
-        class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline text-on-surface-variant hover:text-primary flex items-center justify-center cursor-pointer"
+        class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center cursor-pointer"
         aria-label="إغلاق السلة"
       >
         <span class="material-symbols-outlined text-lg">close</span>
@@ -279,19 +334,19 @@
 
     <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3"></div>
 
-    <footer class="p-4 border-t border-outline bg-surface-container-low flex flex-col gap-3">
+    <footer class="p-4 border-t border-slate-200 bg-slate-50 flex flex-col gap-3">
       <div class="flex items-center justify-between">
-        <span class="font-body text-xs text-on-surface-variant">المجموع الإجمالي:</span>
-        <span id="cartSubtotal" class="font-headline text-lg text-primary font-black tabular-nums">٠ ج.م</span>
+        <span class="text-xs font-bold text-slate-500">المجموع المطلوب:</span>
+        <span id="cartSubtotal" class="font-display text-lg text-slate-900 font-black tabular-nums">٠ ج.م</span>
       </div>
-      <div class="flex items-center justify-between text-xs text-success font-bold">
-        <span>طريقة الدفع:</span>
-        <span>الدفع عند الاستلام نقداً</span>
+      <div class="flex items-center justify-between text-xs text-emerald-600 font-bold">
+        <span>الشحن والتوصيل:</span>
+        <span>مجاني (الدفع عند الاستلام)</span>
       </div>
 
       <a 
         href="checkout.html" 
-        class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-on-primary font-label text-sm font-black hover:bg-primary-hover transition-colors shadow-md"
+        class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-orange-500 text-white font-display text-sm font-black hover:bg-orange-600 transition-colors shadow-md"
       >
         <span>إتمام الطلب وتحديد اللوكيشن</span>
         <span class="material-symbols-outlined text-lg">arrow_back</span>
@@ -299,41 +354,39 @@
     </footer>
   </aside>
 
-  <!-- Quick Order Modal (طلب سريع فوري بضغطة زر دون مغادرة الصفحة) -->
-  <dialog id="fastOrderModal" class="bg-surface-container text-on-surface border-2 border-primary rounded-2xl p-5 max-w-lg w-full backdrop:bg-black/85 shadow-2xl overflow-hidden">
-    <header class="flex items-center justify-between border-b border-outline pb-3 mb-4">
+  <!-- Instant 1-Click Fast Order Modal (شراء فوري مباشر بضغطة زر) -->
+  <dialog id="fastOrderModal" class="bg-white text-slate-900 border border-slate-200 rounded-3xl p-5 max-w-lg w-full backdrop:bg-slate-900/80 shadow-2xl overflow-hidden">
+    <header class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
       <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-xl">bolt</span>
-        <h3 class="font-title text-base font-bold text-on-surface">طلب سريع فوري (الدفع عند الاستلام)</h3>
+        <span class="material-symbols-outlined text-orange-500 text-xl">bolt</span>
+        <h3 class="font-display text-base font-black text-slate-900">طلب فوري سريع (الدفع عند الاستلام)</h3>
       </div>
-      <button id="closeFastOrderBtn" type="button" class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline text-on-surface-variant hover:text-primary flex items-center justify-center">
+      <button id="closeFastOrderBtn" type="button" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center cursor-pointer">
         <span class="material-symbols-outlined text-lg">close</span>
       </button>
     </header>
 
     <!-- Product Summary Snippet -->
-    <div id="fastOrderProductSummary" class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low border border-outline mb-4">
-      <!-- Injected by js/main.js -->
-    </div>
+    <div id="fastOrderProductSummary" class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 mb-4"></div>
 
     <!-- Fast Checkout Form -->
     <form id="fastOrderForm" class="flex flex-col gap-3.5">
       
-      <!-- Name -->
+      <!-- Full Name -->
       <label class="flex flex-col gap-1">
-        <span class="font-label text-xs font-bold text-on-surface">الاسم بالكامل <span class="text-primary">*</span></span>
+        <span class="font-display text-xs font-bold text-slate-800">الاسم بالكامل <span class="text-orange-500">*</span></span>
         <input 
           id="fastName" 
           type="text" 
           required 
           placeholder="اكتب اسمك بالكامل..." 
-          class="w-full rounded-lg bg-surface-container-low border border-outline px-3.5 py-2.5 font-body text-xs text-on-surface focus:border-primary focus:outline-none"
+          class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3.5 py-2.5 font-body text-xs text-slate-900 focus:bg-white focus:border-orange-500 focus:outline-none"
         >
       </label>
 
       <!-- Phone -->
       <label class="flex flex-col gap-1">
-        <span class="font-label text-xs font-bold text-on-surface">رقم الهاتف / الواتساب <span class="text-primary">*</span></span>
+        <span class="font-display text-xs font-bold text-slate-800">رقم الهاتف / الواتساب <span class="text-orange-500">*</span></span>
         <input 
           id="fastPhone" 
           type="tel" 
@@ -341,56 +394,58 @@
           dir="ltr" 
           required 
           placeholder="010 1234 5678" 
-          class="w-full rounded-lg bg-surface-container-low border border-outline px-3.5 py-2.5 font-mono text-xs text-on-surface text-right focus:border-primary focus:outline-none"
+          class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3.5 py-2.5 font-mono text-xs text-slate-900 text-right focus:bg-white focus:border-orange-500 focus:outline-none"
         >
       </label>
 
-      <!-- Address -->
+      <!-- Detailed Address -->
       <label class="flex flex-col gap-1">
-        <span class="font-label text-xs font-bold text-on-surface">المحافظة والعنوان بالتفصيل <span class="text-primary">*</span></span>
+        <span class="font-display text-xs font-bold text-slate-800">المحافظة والعنوان بالتفصيل <span class="text-orange-500">*</span></span>
         <input 
           id="fastAddress" 
           type="text" 
           required 
-          placeholder="المحافظة والمدينة واسم الشارع..." 
-          class="w-full rounded-lg bg-surface-container-low border border-outline px-3.5 py-2.5 font-body text-xs text-on-surface focus:border-primary focus:outline-none"
+          placeholder="المحافظة والمدينة، اسم الشارع، رقم العقار..." 
+          class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3.5 py-2.5 font-body text-xs text-slate-900 focus:bg-white focus:border-orange-500 focus:outline-none"
         >
       </label>
 
-      <!-- Location / GPS Location -->
-      <div class="flex flex-col gap-1.5 p-3 rounded-xl bg-surface-container-low border border-secondary/40">
+      <!-- Location / GPS Location Field -->
+      <div class="flex flex-col gap-1.5 p-3 rounded-2xl bg-sky-50 border border-sky-200">
         <div class="flex items-center justify-between gap-2">
-          <label for="fastLocation" class="font-label text-xs font-bold text-on-surface flex items-center gap-1">
-            <span class="material-symbols-outlined text-secondary text-base">near_me</span>
-            <span>اللوكيشن:</span>
+          <label for="fastLocation" class="font-display text-xs font-bold text-sky-900 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sky-600 text-base">near_me</span>
+            <span>اللوكيشن المحدد للتوصيل:</span>
           </label>
+          
           <button 
             id="fastGpsBtn" 
             type="button" 
-            class="px-2.5 py-1 rounded-md bg-secondary/20 border border-secondary text-secondary hover:bg-secondary hover:text-black font-label text-[11px] font-bold transition-all"
+            class="px-2.5 py-1 rounded-lg bg-sky-600 text-white font-body text-[11px] font-bold hover:bg-sky-700 transition-all cursor-pointer shadow-sm"
           >
             📍 تحديد موقعي الحالي GPS
           </button>
         </div>
+
         <input 
           id="fastLocation" 
           type="text" 
-          placeholder="اكتب اللوكيشن أو اضغط زر تحديد الموقع..." 
-          class="w-full rounded-lg bg-surface-container border border-outline px-3 py-2 font-body text-xs text-on-surface focus:border-secondary focus:outline-none"
+          placeholder="اكتب اللوكيشن أو اضغط زر GPS أعلاه لتحديده تلقائياً..." 
+          class="w-full rounded-xl bg-white border border-sky-200 px-3 py-2 font-body text-xs text-slate-900 focus:border-sky-500 focus:outline-none"
         >
       </div>
 
       <!-- Payment Reassurance Badge -->
-      <div class="p-2.5 rounded-lg bg-success/15 border border-success/40 text-success text-xs font-bold flex items-center gap-2">
-        <span class="material-symbols-outlined text-lg">local_shipping</span>
-        <span>طريقة الدفع: نقداً عند الاستلام ومعاينة المنتج</span>
+      <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold flex items-center gap-2">
+        <span class="material-symbols-outlined text-emerald-600 text-lg">local_shipping</span>
+        <span>طريقة الدفع: نقداً عند الاستلام ومعاينة المنتج مع المندوب</span>
       </div>
 
-      <!-- Fast Submit Button -->
+      <!-- Submit Button -->
       <button 
         id="fastSubmitBtn" 
         type="submit" 
-        class="w-full py-3.5 rounded-xl bg-primary text-on-primary font-label text-sm font-black hover:bg-primary-hover transition-colors shadow-lg shadow-primary/25 cursor-pointer mt-1"
+        class="w-full py-3.5 rounded-xl bg-orange-500 text-white font-display text-sm font-black hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/25 cursor-pointer mt-1"
       >
         تأكيد الطلب الفوري — الدفع عند الاستلام
       </button>
@@ -398,27 +453,27 @@
   </dialog>
 
   <!-- Quick View Modal -->
-  <dialog id="quickViewModal" class="bg-surface-container text-on-surface border border-outline rounded-2xl p-0 max-w-2xl w-full backdrop:bg-black/85 overflow-hidden shadow-2xl">
+  <dialog id="quickViewModal" class="bg-white text-slate-900 border border-slate-200 rounded-3xl p-0 max-w-2xl w-full backdrop:bg-slate-900/80 overflow-hidden shadow-2xl">
     <div class="grid grid-cols-1 md:grid-cols-2">
-      <div class="bg-surface-container-low aspect-[3/4] md:aspect-auto relative overflow-hidden">
+      <div class="bg-slate-100 aspect-[3/4] md:aspect-auto relative overflow-hidden">
         <img id="qvImage" src="" alt="معاينة الملابس" class="w-full h-full object-cover">
       </div>
 
       <div class="p-6 flex flex-col justify-between gap-4">
         <div class="flex flex-col gap-3">
           <div class="flex items-center justify-between">
-            <span id="qvFabric" class="font-label text-xs font-bold text-primary"></span>
-            <button id="closeQvBtn" type="button" aria-label="إغلاق" class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline text-on-surface-variant hover:text-primary flex items-center justify-center">
+            <span id="qvFabric" class="text-xs font-bold text-orange-600 font-display"></span>
+            <button id="closeQvBtn" type="button" aria-label="إغلاق" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center cursor-pointer">
               <span class="material-symbols-outlined text-lg">close</span>
             </button>
           </div>
 
-          <h3 id="qvTitle" class="font-headline font-black text-lg text-on-surface"></h3>
-          <span id="qvPrice" class="font-headline font-black text-2xl text-primary tabular-nums"></span>
-          <p id="qvDesc" class="font-body text-xs text-on-surface-variant leading-relaxed"></p>
+          <h3 id="qvTitle" class="font-display font-black text-lg text-slate-900"></h3>
+          <span id="qvPrice" class="font-display font-black text-2xl text-slate-900 tabular-nums"></span>
+          <p id="qvDesc" class="text-xs text-slate-600 leading-relaxed"></p>
 
           <div class="flex flex-col gap-1.5 pt-1">
-            <span class="font-label text-xs font-bold text-on-surface">المقاسات المتوفرة:</span>
+            <span class="text-xs font-bold text-slate-800">المقاسات المتاحة:</span>
             <div id="qvSizes" class="flex flex-wrap items-center gap-1.5"></div>
           </div>
         </div>
@@ -427,14 +482,14 @@
           <button 
             id="qvFastBuyBtn" 
             type="button" 
-            class="flex-1 py-3 rounded-xl bg-primary text-on-primary font-label text-xs font-black hover:bg-primary-hover transition-colors"
+            class="flex-1 py-3 rounded-xl bg-orange-500 text-white font-display text-xs font-black hover:bg-orange-600 transition-colors cursor-pointer"
           >
             ⚡ شراء فوري مباشر
           </button>
           <button 
             id="qvAddBtn" 
             type="button" 
-            class="px-4 py-3 rounded-xl bg-surface-container-high border border-outline text-on-surface font-label text-xs font-bold hover:border-primary transition-colors"
+            class="px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-display text-xs font-bold hover:border-orange-500 transition-colors cursor-pointer"
           >
             إضافة للسلة
           </button>
@@ -443,24 +498,39 @@
     </div>
   </dialog>
 
-  <!-- Modern Footer -->
-  <footer class="border-t border-outline bg-surface-container-low mt-auto py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-on-surface-variant">
+  <!-- Floating WhatsApp Contact Button -->
+  <a 
+    href="https://wa.me/201098427510?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%84%D8%A7%D8%A8%D8%B3%20%D9%85%D8%AA%D8%AC%D8%B1%20%D8%B4%D9%8A%D8%A7%D9%83%D8%A9" 
+    target="_blank" 
+    rel="noopener" 
+    class="whatsapp-floating-btn"
+    title="تواصل واتساب مباشر مع المتجر"
+  >
+    <span class="material-symbols-outlined text-xl">chat</span>
+    <span>تواصل واتساب</span>
+  </a>
+
+  <!-- Modern Clean Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-auto py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <div class="flex items-center gap-2">
-        <span class="font-bold text-on-surface">متجر ملابس رجالي كاجوال</span>
+        <span class="font-bold text-slate-800">متجر شياكة للملابس الرجالي الكاجوال</span>
         <span>|</span>
-        <span>شحن لجميع محافظات مصر — الدفع عند الاستلام</span>
+        <span>توصيل لجميع محافظات مصر • الدفع عند الاستلام</span>
       </div>
       <div class="flex items-center gap-4">
-        <a href="checkout.html" class="hover:text-primary transition-colors">إتمام الطلب</a>
+        <a href="checkout.html" class="hover:text-orange-600 transition-colors">إتمام الطلب</a>
         <span>•</span>
-        <a href="sales.html" class="text-primary hover:underline font-bold flex items-center gap-1">
+        <a href="dashboard.html" class="text-orange-600 hover:underline font-bold flex items-center gap-1">
           <span class="material-symbols-outlined text-sm">dashboard</span>
-          <span>لوحة تحكم المبيعات</span>
+          <span>لوحة تحكم المتجر (Dashboard)</span>
         </a>
       </div>
     </div>
   </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer"></div>
 
   <!-- Modular Scripts -->
   <script type="module" src="js/main.js"></script>
